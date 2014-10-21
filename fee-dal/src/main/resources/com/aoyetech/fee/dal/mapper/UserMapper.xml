@@ -8,15 +8,9 @@
 		<result column="name" property="name" />
 		<result column="password" property="password" />
 		<result column="integral" property="integral" />
-		<result column="planeGrade" property="planegrade" />
+		<result column="grade" property="grade" />
 		<result column="masonry" property="masonry" />
 		<result column="historyNum" property="historynum" />
-		<result column="petOne" property="petone" />
-		<result column="petTwo" property="pettwo" />
-		<result column="petThree" property="petthree" />
-		<result column="petFour" property="petfour" />
-		<result column="petFive" property="petfive" />
-		<result column="petSix" property="petsix" />
 		<result column="currentBlackStage" property="currentblackstage" />
 		<result column="isBlackStateUnlock" property="isblackstateunlock" />
 		<result column="isNewPlayer" property="isnewplayer" />
@@ -36,16 +30,10 @@
 		integral
 		as
 		integral,
-		planegrade as planegrade,
+		grade as grade,
 		masonry as masonry,
 		historynum as
 		historynum,
-		petone as petone,
-		pettwo as pettwo,
-		petthree as petthree,
-		petfour as petfour,
-		petfive as petfive,
-		petsix as petsix,
 		currentblackstage as currentblackstage,
 		isblackstateunlock as
 		isblackstateunlock,
@@ -63,8 +51,8 @@
 	<!-- insert into 基本语句 -->
 	<insert id="airUser_insert" parameterType="UserInfoDO">
 		insert into
-		user(name,password,integral,planegrade,masonry,historynum,petone,pettwo,petthree,petfour,petfive,petsix,currentblackstage,isblackstateunlock,isnewplayer)
-		values(#{name},#{password},#{integral},#{planegrade},#{masonry},#{historynum},#{petone},#{pettwo},#{petthree},#{petfour},#{petfive},#{petsix},#{currentblackstage},#{isblackstateunlock},#{isnewplayer})
+		user(name,password,integral,grade,masonry,historynum,currentblackstage,isblackstateunlock,isnewplayer)
+		values(#{name},#{password},#{integral},#{grade},#{masonry},#{historynum},#{currentblackstage},#{isblackstateunlock},#{isnewplayer})
 		<selectKey resultType="int" keyProperty="id">   
 			<![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
 		</selectKey>
@@ -76,15 +64,9 @@
 		<trim prefix="SET" suffixOverrides=",">
 			 <if test="password != null">password=#{password},</if> 
 			 <if test="integral != null">integral=#{integral},</if>
-			 <if test="planegrade != null">planegrade=#{planegrade},</if>
+			 <if test="planegrade != null">grade=#{grade},</if>
 			 <if test="masonry != null">masonry=#{masonry},</if>
 			 <if test="historynum != null">historynum=#{historynum},</if>
-			 <if test="petone != null">petone=#{petone},</if>
-			 <if test="pettwo != null">pettwo=#{pettwo},</if>
-			 <if test="petthree != null">petthree=#{petthree},</if>
-			 <if test="petfour != null">petfour=#{petfour},</if>
-			 <if test="petfive != null">petfive=#{petfive},</if>
-			 <if test="petsix != null">petsix=#{petsix},</if>
 			 <if test="currentblackstage != null">currentblackstage=#{currentblackstage},</if>
 			 <if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock},</if>
 			 <if test="isnewplayer != null">isnewplayer=#{isnewplayer},</if>
