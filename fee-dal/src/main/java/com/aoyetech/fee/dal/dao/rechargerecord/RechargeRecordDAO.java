@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.aoyetech.fee.domain.rechargerecord.AirRechargeRecordDO;
 
-public interface AirRechargeRecordDAO {
+public interface RechargeRecordDAO {
 
     /**
      * 描述： select air_recharge_record

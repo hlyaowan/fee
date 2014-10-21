@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
-import com.aoyetech.fee.dal.dao.rechage.AirRechargeDAO;
+import com.aoyetech.fee.dal.dao.rechage.RechargeDAO;
 import com.aoyetech.fee.domain.recharge.AirRechargeDO;
 
 
 @Repository
-public class AirRechargeDAOImpl extends MybatisTemplate implements AirRechargeDAO {
+public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
 
     /**
      * 描述： select air_recharge
