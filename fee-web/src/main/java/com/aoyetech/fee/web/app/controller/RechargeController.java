@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
-import com.aoyetech.fee.biz.rechage.AirRechargeManager;
+import com.aoyetech.fee.biz.rechage.RechargeManager;
 import com.aoyetech.fee.commons.constant.PayConstant;
 import com.aoyetech.fee.commons.utils.ExceptionHelper;
 import com.aoyetech.fee.domain.base.Message;
-import com.aoyetech.fee.domain.recharge.AirRechargeDO;
+import com.aoyetech.fee.domain.recharge.RechargeDO;
 import com.aoyetech.fee.domain.recharge.ResultMessage;
 import com.aoyetech.fee.statuscode.BusinessCode;
 import com.aoyetech.fee.web.app.utils.ServletUtils;
@@ -38,7 +38,7 @@ import com.aoyetech.feecommons.page.PagerConstant;
 public class RechargeController {
 
     @Autowired
-    private AirRechargeManager  airRechargeManager;
+    private RechargeManager  airRechargeManager;
 
     @Autowired
     private ExceptionHelper     exceptionHelper;
@@ -53,7 +53,7 @@ public class RechargeController {
         }
         int start = (page - 1) * PagerConstant.PAGESIZE;
         String object = StringUtils.EMPTY;
-        List<AirRechargeDO> airRechargeDOs = airRechargeManager.getAirRechargeList(start,
+        List<RechargeDO> airRechargeDOs = airRechargeManager.getAirRechargeList(start,
             PagerConstant.PAGESIZE);
         object = JSON.toJSONString(airRechargeDOs);
         ServletUtils.renderJson(response, object);

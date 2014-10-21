@@ -16,7 +16,7 @@ import com.aoyetech.fee.biz.user.UserManager;
 import com.aoyetech.fee.commons.utils.DateUtil;
 import com.aoyetech.fee.commons.utils.ExceptionHelper;
 import com.aoyetech.fee.domain.base.Message;
-import com.aoyetech.fee.domain.ext.AirUserExtDO;
+import com.aoyetech.fee.domain.ext.UserExtDO;
 import com.aoyetech.fee.domain.user.UserInfoDO;
 import com.aoyetech.fee.statuscode.BusinessCode;
 import com.aoyetech.fee.web.app.utils.ServletUtils;
@@ -70,7 +70,7 @@ public class UserController {
         //http://202.85.214.90:81/?userId=1124433646&key=JS000e43297002913643937660951&cpId=772319&cpServiceId=700214722000&channelId=40204000&p=
         Message message = new Message();
         //判断用户是否存在
-        AirUserExtDO airUserExtDO = new AirUserExtDO();
+        UserExtDO airUserExtDO = new UserExtDO();
         airUserExtDO.setAuthId(userId);
         airUserExtDO = userExtManager.getAirUserExtInfo(airUserExtDO);
         if (airUserExtDO == null) {
@@ -94,7 +94,7 @@ public class UserController {
             userInfoDO.setPlanegrade(0);
             userManager.insertAirUser(userInfoDO);
             // 插入扩展表
-            airUserExtDO = new AirUserExtDO();
+            airUserExtDO = new UserExtDO();
             airUserExtDO.setAddTime(DateUtil.getCurrentTimestamp());
             airUserExtDO.setAuthId(StringUtils.trim(userId));
             airUserExtDO.setChannelId(channelId);
@@ -148,7 +148,7 @@ public class UserController {
 
         Message message = new Message();
         //更新扩展表
-        AirUserExtDO airUserExtDO = new AirUserExtDO();
+        UserExtDO airUserExtDO = new UserExtDO();
         airUserExtDO.setAuthId(StringUtils.trim(userId));
         airUserExtDO.setCraftName(craftName);
         airUserExtDO.setDriverName(driverName);
