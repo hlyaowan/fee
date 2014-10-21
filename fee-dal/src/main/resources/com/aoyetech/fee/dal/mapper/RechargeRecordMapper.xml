@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aoyetech.air.dal.dao.rechargerecord.AirRechargeRecordDAO">
+<mapper namespace="com.aoyetech.fee.dal.dao.rechargerecord.RechargeRecordDAO">
 	
 	<!-- select 基本语句 -->
-	<select id="airRechargeRecord_select" parameterType="airRechargeRecordDO"
-		resultType="airRechargeRecordDO">
+	<select id="RechargeRecord_select" parameterType="RechargeRecordDO"
+		resultType="RechargeRecordDO">
 		select id as id,
 		recharge_name as rechargeName,
 		diamond_number as
@@ -16,12 +16,12 @@
 		update_time as updateTime,
 		extendation as extendation
 		from
-		air_recharge_record WHERE 1 = 1
+		recharge_record WHERE 1 = 1
 	</select>
 	
 	<!-- select 基本语句 -->
-	<select id="airRechargeRecord_select_entity" parameterType="airRechargeRecordDO"
-		resultType="airRechargeRecordDO">
+	<select id="RechargeRecord_select_entity" parameterType="RechargeRecordDO"
+		resultType="RechargeRecordDO">
 		select id as id,
 		recharge_name as rechargeName,
 		diamond_number as
@@ -32,28 +32,28 @@
 		update_time as updateTime,
 		extendation as extendation
 		from
-		air_recharge_record WHERE id = #{id}
+		recharge_record WHERE id = #{id}
 	</select>
 
 	<!-- select count() 基本语句 -->
-	<select id="airRechargeRecord_count" parameterType="airRechargeRecordDO"
+	<select id="RechargeRecord_count" parameterType="RechargeRecordDO"
 		resultType="java.lang.Integer">
-		select count(1) from air_recharge_record
+		select count(1) from recharge_record
 		where 1 = 1
 	</select>
 
 
 	<!-- insert into 基本语句 -->
-	<insert id="airRechargeRecord_insert" parameterType="airRechargeRecordDO">
+	<insert id="RechargeRecord_insert" parameterType="RechargeRecordDO">
 		insert into
-		air_recharge_record(recharge_name,diamond_number,decribe,create_time,update_time,extendation)
+		recharge_record(recharge_name,diamond_number,decribe,create_time,update_time,extendation)
 		values(#rechargeName#,#diamondNumber#,#decribe#,#createTime#,#updateTime#,#extendation#)
 	</insert>
 
 	<!-- update 基本语句 -->
-	<update id="airRechargeRecord_update" parameterType="airRechargeRecordDO">
+	<update id="RechargeRecord_update" parameterType="RechargeRecordDO">
 		update
-		air_recharge_record
+		recharge_record
 		set
 		recharge_name=#rechargeName#,diamond_number=#diamondNumber#,decribe=#decribe#,create_time=#createTime#,update_time=#updateTime#,extendation=#extendation#
 		where id = #id#
@@ -61,9 +61,9 @@
 
 
 	<!-- delete 基本语句 -->
-	<delete id="airRechargeRecord_delete" parameterType="airRechargeRecordDO">
+	<delete id="RechargeRecord_delete" parameterType="RechargeRecordDO">
 		delete from
-		air_recharge_record
+		recharge_record
 		where id = #id#
 	</delete>
 </mapper>

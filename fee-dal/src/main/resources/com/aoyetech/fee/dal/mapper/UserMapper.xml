@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aoyetech.air.dal.dao.user.UserDAO">
+<mapper namespace="com.aoyetech.fee.dal.dao.user.UserDAO">
 	<!-- 返回User 或者List<User> -->
 	<resultMap id="UserInfoDO" type="UserInfoDO">
 		<id column="id" property="id" />
@@ -23,7 +23,7 @@
 	</resultMap>
 
 	<select id="getUserInfoDO" parameterType="UserInfoDO" resultMap="UserInfoDO">
-		select * from air_user where name=#{name}
+		select * from user where name=#{name}
 	</select>
 
 
@@ -50,20 +50,20 @@
 		isblackstateunlock as
 		isblackstateunlock,
 		isnewplayer as isnewplayer
-		from air_user
+		from user
 	</select>
 
 
 	<!-- select count() 基本语句 -->
 	<select id="airUser_count" parameterType="UserInfoDO"
 		resultType="java.lang.Integer">
-		select count(1) from air_user
+		select count(1) from user
 	</select>
 
 	<!-- insert into 基本语句 -->
 	<insert id="airUser_insert" parameterType="UserInfoDO">
 		insert into
-		air_user(name,password,integral,planegrade,masonry,historynum,petone,pettwo,petthree,petfour,petfive,petsix,currentblackstage,isblackstateunlock,isnewplayer)
+		user(name,password,integral,planegrade,masonry,historynum,petone,pettwo,petthree,petfour,petfive,petsix,currentblackstage,isblackstateunlock,isnewplayer)
 		values(#{name},#{password},#{integral},#{planegrade},#{masonry},#{historynum},#{petone},#{pettwo},#{petthree},#{petfour},#{petfive},#{petsix},#{currentblackstage},#{isblackstateunlock},#{isnewplayer})
 		<selectKey resultType="int" keyProperty="id">   
 			<![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
@@ -72,7 +72,7 @@
 
 	<!-- update 基本语句 -->
 	<update id="airUser_update" parameterType="UserInfoDO">
-		update air_user
+		update user
 		<trim prefix="SET" suffixOverrides=",">
 			 <if test="password != null">password=#{password},</if> 
 			 <if test="integral != null">integral=#{integral},</if>
@@ -99,7 +99,7 @@
 
 	<!-- delete 基本语句 -->
 	<delete id="airUser_delete" parameterType="UserInfoDO">
-		delete from air_user
+		delete from user
 		where id = #id#
 	</delete>
 </mapper>

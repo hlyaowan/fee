@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aoyetech.air.dal.dao.rechage.AirRechargeDAO">
+<mapper namespace="com.aoyetech.fee.dal.dao.rechage.RechargeDAO">
 
 	
 
 	<!-- select 基本语句 -->
-	<select id="airRecharge_select" parameterType="airRechargeDO"
-		resultType="airRechargeDO">
+	<select id="Recharge_select" parameterType="RechargeDO"
+		resultType="RechargeDO">
 		select id as id,
 		recharge_name as rechargeName,
 		recharge_number as
@@ -17,15 +17,15 @@
 		update_time as updateTime,
 		extendation as
 		extendation
-		from air_recharge
+		from recharge
 		<if test="start != null and count != null">
 			limit #{start}, #{count}
 		</if>
 	</select>
 	
 	<!-- select 基本语句 -->
-	<select id="airRecharge_select_entity" parameterType="airRechargeDO"
-		resultType="airRechargeDO">
+	<select id="Recharge_select_entity" parameterType="RechargeDO"
+		resultType="RechargeDO">
 		select id as id,
 		recharge_name as rechargeName,
 		recharge_number as
@@ -35,36 +35,36 @@
 		update_time as updateTime,
 		extendation as
 		extendation
-		from air_recharge WHERE id = #{id}
+		from recharge WHERE id = #{id}
 	</select>
 
 	<!-- select count() 基本语句 -->
-	<select id="airRecharge_count" parameterType="airRechargeDO"
+	<select id="Recharge_count" parameterType="RechargeDO"
 		resultType="java.lang.Integer">
-		select count(1) from air_recharge
+		select count(1) from recharge
 	</select>
 
 	<!-- insert into 基本语句 -->
-	<insert id="airRecharge_insert" parameterType="airRechargeDO">
+	<insert id="Recharge_insert" parameterType="RechargeDO">
 		insert into
-		air_recharge(recharge_name,recharge_number,description,create_time,update_time,extendation)
+		recharge(recharge_name,recharge_number,description,create_time,update_time,extendation)
 		values(#rechargeName#,#rechargeNumber#,#description#,#createTime#,#updateTime#,#extendation#)
 	</insert>
 
 
 	<!-- update 基本语句 -->
-	<update id="airRecharge_update" parameterType="airRechargeDO">
+	<update id="Recharge_update" parameterType="RechargeDO">
 		update
-		air_recharge
+		recharge
 		set
 		recharge_name=#rechargeName#,recharge_number=#rechargeNumber#,description=#description#,create_time=#createTime#,update_time=#updateTime#,extendation=#extendation#
 		where id = #id#
 	</update>
 
 	<!-- delete 基本语句 -->
-	<delete id="airRecharge_delete" parameterType="airRechargeDO">
+	<delete id="Recharge_delete" parameterType="RechargeDO">
 		delete from
-		air_recharge
+		recharge
 		where id = #id#
 	</delete>
 </mapper>
