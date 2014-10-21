@@ -38,7 +38,7 @@ import com.aoyetech.feecommons.page.PagerConstant;
 public class RechargeController {
 
     @Autowired
-    private RechargeManager  airRechargeManager;
+    private RechargeManager  rechargeManager;
 
     @Autowired
     private ExceptionHelper     exceptionHelper;
@@ -53,7 +53,7 @@ public class RechargeController {
         }
         int start = (page - 1) * PagerConstant.PAGESIZE;
         String object = StringUtils.EMPTY;
-        List<RechargeDO> airRechargeDOs = airRechargeManager.getAirRechargeList(start,
+        List<RechargeDO> airRechargeDOs = rechargeManager.getRechargeList(start,
             PagerConstant.PAGESIZE);
         object = JSON.toJSONString(airRechargeDOs);
         ServletUtils.renderJson(response, object);

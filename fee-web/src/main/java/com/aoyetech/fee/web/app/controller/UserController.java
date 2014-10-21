@@ -72,7 +72,7 @@ public class UserController {
         //判断用户是否存在
         UserExtDO airUserExtDO = new UserExtDO();
         airUserExtDO.setAuthId(userId);
-        airUserExtDO = userExtManager.getAirUserExtInfo(airUserExtDO);
+        airUserExtDO = userExtManager.getUserExtInfo(airUserExtDO);
         if (airUserExtDO == null) {
             //插入基本表
             UserInfoDO userInfoDO = new UserInfoDO();
@@ -92,7 +92,7 @@ public class UserController {
             userInfoDO.setPetfive(0);
             userInfoDO.setPetsix(0);
             userInfoDO.setPlanegrade(0);
-            userManager.insertAirUser(userInfoDO);
+            userManager.insertUser(userInfoDO);
             // 插入扩展表
             airUserExtDO = new UserExtDO();
             airUserExtDO.setAddTime(DateUtil.getCurrentTimestamp());
@@ -108,7 +108,7 @@ public class UserController {
             airUserExtDO.setPersonName(StringUtils.EMPTY);
             airUserExtDO.setUserId(0);
             airUserExtDO.setRegion(region);
-            int isSuccess = userExtManager.insertAirUserExt(airUserExtDO);
+            int isSuccess = userExtManager.insertUserExt(airUserExtDO);
 
             if (isSuccess > 0) {
                 message.setStatus(BusinessCode.NORMAL);
@@ -153,7 +153,7 @@ public class UserController {
         airUserExtDO.setCraftName(craftName);
         airUserExtDO.setDriverName(driverName);
         airUserExtDO.setPersonName(personName);
-        userExtManager.updateAirUserExt(airUserExtDO);
+        userExtManager.updateUserExt(airUserExtDO);
         //更新用户表
         UserInfoDO userInfoDO = new UserInfoDO();
         userInfoDO.setCurrentblackstage(currentBlackStage);
@@ -170,7 +170,7 @@ public class UserController {
         userInfoDO.setPetfive(petFive);
         userInfoDO.setPetsix(petSix);
         userInfoDO.setPlanegrade(historyNum);
-        int isSuccess = userManager.updateAirUser(userInfoDO);
+        int isSuccess = userManager.updateUser(userInfoDO);
         if(isSuccess==1){
             message.setStatus(BusinessCode.NORMAL);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
