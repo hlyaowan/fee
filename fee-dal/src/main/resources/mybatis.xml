@@ -2,23 +2,15 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="UserInfoDO" type="com.aoyetech.air.domain.user.UserInfoDO" />
-		<typeAlias alias="airUserExtDO" type="com.aoyetech.air.domain.ext.AirUserExtDO" />
-		<typeAlias alias="airFighttoolDO" type="com.aoyetech.air.domain.fighttool.AirFighttoolDO"/>
-		<typeAlias alias="airRechargeRecordDO" type="com.aoyetech.air.domain.rechargerecord.AirRechargeRecordDO" />
-		<typeAlias alias="airRechargeDO" type="com.aoyetech.air.domain.recharge.AirRechargeDO" />
-		<typeAlias alias="airBaseInfoDO" type="com.aoyetech.air.domain.baseinfo.AirBaseInfoDO" />
-		<typeAlias alias="airToolDO" type="com.aoyetech.air.domain.tool.AirToolDO" />
-		<typeAlias alias="airPlaneUserInfoDO" type="com.aoyetech.air.domain.plane.AirPlaneUserInfoDO"/>
+		<typeAlias alias="UserInfoDO" type="com.aoyetech.fee.domain.user.UserInfoDO" />
+		<typeAlias alias="UserExtDO" type="com.aoyetech.fee.domain.ext.UserExtDO" />
+		<typeAlias alias="RechargeRecordDO" type="com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO" />
+		<typeAlias alias="RechargeDO" type="com.aoyetech.fee.domain.recharge.RechargeDO" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="com/aoyetech/air/dal/mapper/UserMapper.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/UserExtMapper.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/FightToolMapper.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/AirRechargeRecordMapper.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/AirRechargeMapper.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/AirBaseInfoMapper.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/AirToolMapping.xml" />
-		<mapper resource="com/aoyetech/air/dal/mapper/AirPlaneUserInfo.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/UserMapper.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/UserExtMapper.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/RechargeRecordMapper.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/RechargeMapper.xml" />
 	</mappers>
 </configuration>	
