@@ -7,7 +7,7 @@ import com.aoyetech.fee.domain.base.BaseDO;
  * @author 黄磊
  * Date 2014-09-17
  */
-public class AirUserExtDO extends BaseDO {
+public class UserExtDO extends BaseDO {
 
     private static final long serialVersionUID = 1L;
 

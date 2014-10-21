@@ -1,50 +1,50 @@
-package com.aoyetech.fee.domain.rechargerecord;
+package com.aoyetech.fee.domain.recharge;
 
 import com.aoyetech.fee.domain.base.BaseDO;
 
 /**
- * 描述：充值记录表
+ * 描述：充值表
  * @author 黄磊
  * Date 2014-09-17
  */
-public class AirRechargeRecordDO extends BaseDO {
+public class RechargeDO extends BaseDO {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 流水号
      */
-    private Integer           id;
+    private Integer id;
 
     /**
-     * 支付名
+     * 点数名
      */
-    private String            rechargeName;
+    private String  rechargeName;
 
     /**
-     * 钻石数
+     * 点数
      */
-    private Integer           diamondNumber;
+    private Integer rechargeNumber;
 
     /**
      * 描述
      */
-    private String            decribe;
+    private String  description;
 
     /**
      * 建立时间
      */
-    private String            createTime;
+    private String    createTime;
 
     /**
      * 修改时间
      */
-    private String            updateTime;
+    private String    updateTime;
 
     /**
-     * 扩展1
+     * 扩展字段
      */
-    private String            extendation;
+    private String  extendation;
 
     /**
      * setter for column 流水号
@@ -61,45 +61,45 @@ public class AirRechargeRecordDO extends BaseDO {
     }
 
     /**
-     * setter for column 支付名
+     * setter for column 点数名
      */
     public void setRechargeName(String rechargeName) {
         this.rechargeName = rechargeName;
     }
 
     /**
-     * getter for column 支付名
+     * getter for column 点数名
      */
     public String getRechargeName() {
         return this.rechargeName;
     }
 
     /**
-     * setter for column 钻石数
+     * setter for column 点数
      */
-    public void setDiamondNumber(Integer diamondNumber) {
-        this.diamondNumber = diamondNumber;
+    public void setRechargeNumber(Integer rechargeNumber) {
+        this.rechargeNumber = rechargeNumber;
     }
 
     /**
-     * getter for column 钻石数
+     * getter for column 点数
      */
-    public Integer getDiamondNumber() {
-        return this.diamondNumber;
+    public Integer getRechargeNumber() {
+        return this.rechargeNumber;
     }
 
     /**
      * setter for column 描述
      */
-    public void setDecribe(String decribe) {
-        this.decribe = decribe;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
      * getter for column 描述
      */
-    public String getDecribe() {
-        return this.decribe;
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -131,14 +131,14 @@ public class AirRechargeRecordDO extends BaseDO {
     }
 
     /**
-     * setter for column 扩展1
+     * setter for column 扩展字段
      */
     public void setExtendation(String extendation) {
         this.extendation = extendation;
     }
 
     /**
-     * getter for column 扩展1
+     * getter for column 扩展字段
      */
     public String getExtendation() {
         return this.extendation;
