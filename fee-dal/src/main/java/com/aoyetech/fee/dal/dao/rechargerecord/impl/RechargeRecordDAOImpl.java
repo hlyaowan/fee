@@ -13,62 +13,62 @@ import com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO;
 public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRecordDAO {
 
     /**
-     * 描述： select air_recharge_record
+     * 描述： select _recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public List<RechargeRecordDO> getAirRechargeRecordList(RechargeRecordDO airRechargeRecordDO) {
-        return super.queryForList("airRechargeRecord_select", airRechargeRecordDO);
+    public List<RechargeRecordDO> getRechargeRecordList(RechargeRecordDO RechargeRecordDO) {
+        return super.queryForList("RechargeRecord_select", RechargeRecordDO);
     }
     
     /**
-     * 描述： select air_recharge_record
+     * 描述： select _recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public RechargeRecordDO getAirRechargeRecordEntity(RechargeRecordDO airRechargeRecordDO) {
-        return super.get("airRechargeRecord_select", airRechargeRecordDO);
+    public RechargeRecordDO getRechargeRecordEntity(RechargeRecordDO RechargeRecordDO) {
+        return super.get("RechargeRecord_select", RechargeRecordDO);
     }
 
     /**
-     * 描述： select count air_recharge_record
+     * 描述： select count _recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirRechargeRecordCount(RechargeRecordDO airRechargeRecordDO) {
-        return (Integer) super.getTotalCount("airRechargeRecord_count", airRechargeRecordDO);
+    public Integer getRechargeRecordCount(RechargeRecordDO RechargeRecordDO) {
+        return (Integer) super.getTotalCount("RechargeRecord_count", RechargeRecordDO);
     }
 
     /**
-     * 描述： insert into air_recharge_record
+     * 描述： insert into _recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
-        return super.update("airRechargeRecord_insert", airRechargeRecordDO);
+    public Integer insertRechargeRecord(RechargeRecordDO RechargeRecordDO) {
+        return super.update("RechargeRecord_insert", RechargeRecordDO);
     }
 
     /**
-     * 描述： update air_recharge_record
+     * 描述： update _recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
-        return super.update("airRechargeRecord_update", airRechargeRecordDO);
+    public Integer updateRechargeRecord(RechargeRecordDO RechargeRecordDO) {
+        return super.update("RechargeRecord_update", RechargeRecordDO);
     }
 
     /**
-     * 描述： delete from air_recharge_record
+     * 描述： delete from _recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
-        return super.update("airRechargeRecord_delete", airRechargeRecordDO);
+    public Integer deleteRechargeRecord(RechargeRecordDO RechargeRecordDO) {
+        return super.update("RechargeRecord_delete", RechargeRecordDO);
     }
 }

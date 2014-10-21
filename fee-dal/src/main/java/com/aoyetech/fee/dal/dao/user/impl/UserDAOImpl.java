@@ -24,47 +24,47 @@ public class UserDAOImpl extends MybatisTemplate implements UserDAO {
     }
 
     /**
-     * 描述： select air_user
+     * 描述： select _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<UserInfoDO> getAirUserList(UserInfoDO airUserDO) {
-        return super.queryForList("airUser_select", airUserDO);
+    public List<UserInfoDO> getUserList(UserInfoDO UserDO) {
+        return super.queryForList("User_select", UserDO);
     }
 
     /**
-     * 描述： select count air_user
+     * 描述： select count _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirUserCount(UserInfoDO airUserDO) {
-        return (Integer) super.getTotalCount("airUser_count", airUserDO);
+    public Integer getUserCount(UserInfoDO UserDO) {
+        return (Integer) super.getTotalCount("User_count", UserDO);
     }
 
     /**
-     * 描述： insert into air_user
+     * 描述： insert into _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirUser(UserInfoDO airUserDO) {
-        return super.update("airUser_insert", airUserDO);
+    public Integer insertUser(UserInfoDO UserDO) {
+        return super.update("User_insert", UserDO);
     }
 
     /**
-     * 描述： update air_user
+     * 描述： update _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirUser(UserInfoDO airUserDO) {
-        return super.update("airUser_update", airUserDO);
+    public Integer updateUser(UserInfoDO UserDO) {
+        return super.update("User_update", UserDO);
     }
 
     /**
-     * 描述： delete from air_user
+     * 描述： delete from _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirUser(UserInfoDO airUserDO) {
-        return super.update("airUser_delete", airUserDO);
+    public Integer deleteUser(UserInfoDO UserDO) {
+        return super.update("User_delete", UserDO);
     }
 }
