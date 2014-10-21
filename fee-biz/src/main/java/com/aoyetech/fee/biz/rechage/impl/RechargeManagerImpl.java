@@ -16,68 +16,68 @@ import com.aoyetech.fee.domain.recharge.RechargeDO;
 public class RechargeManagerImpl  implements RechargeManager {
 
     @Autowired
-    private RechargeDAO airRechargeDAO;
+    private RechargeDAO RechargeDAO;
     
     /**
-     * 描述： select air_recharge
+     * 描述： select _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public List<RechargeDO> getAirRechargeList(int start,int count) {
-        RechargeDO airRechargeDO =new RechargeDO();
-        airRechargeDO.setStart(start);
-        airRechargeDO.setCount(count);
-        return airRechargeDAO.getAirRechargeList(airRechargeDO);
+    public List<RechargeDO> getRechargeList(int start,int count) {
+        RechargeDO RechargeDO =new RechargeDO();
+        RechargeDO.setStart(start);
+        RechargeDO.setCount(count);
+        return RechargeDAO.getRechargeList(RechargeDO);
     }
     
     /**
-     * 描述： select air_recharge
+     * 描述： select _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public RechargeDO getAirRechargeEntity(RechargeDO airRechargeDO) {
-        return airRechargeDAO.getAirRechargeEntity(airRechargeDO);
+    public RechargeDO getRechargeEntity(RechargeDO RechargeDO) {
+        return RechargeDAO.getRechargeEntity(RechargeDO);
     }
 
     /**
-     * 描述： select count air_recharge
+     * 描述： select count _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirRechargeCount(RechargeDO airRechargeDO) {
-        return airRechargeDAO.getAirRechargeCount(airRechargeDO);
+    public Integer getRechargeCount(RechargeDO RechargeDO) {
+        return RechargeDAO.getRechargeCount(RechargeDO);
     }
 
     /**
-     * 描述： insert into air_recharge
+     * 描述： insert into _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirRecharge(RechargeDO airRechargeDO) {
-        return airRechargeDAO.insertAirRecharge(airRechargeDO);
+    public Integer insertRecharge(RechargeDO RechargeDO) {
+        return RechargeDAO.insertRecharge(RechargeDO);
     }
 
     /**
-     * 描述： update air_recharge
+     * 描述： update _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirRecharge(RechargeDO airRechargeDO) {
-        return airRechargeDAO.updateAirRecharge(airRechargeDO);
+    public Integer updateRecharge(RechargeDO RechargeDO) {
+        return RechargeDAO.updateRecharge(RechargeDO);
     }
 
     /**
-     * 描述： delete from air_recharge
+     * 描述： delete from _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirRecharge(RechargeDO airRechargeDO) {
-        return airRechargeDAO.deleteAirRecharge(airRechargeDO);
+    public Integer deleteRecharge(RechargeDO RechargeDO) {
+        return RechargeDAO.deleteRecharge(RechargeDO);
     }
 }

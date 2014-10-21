@@ -10,39 +10,39 @@ public interface UserManager {
 
     public UserInfoDO getUserInfo(String uid);
     /**
-     * 描述： select air_user
+     * 描述： select _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<UserInfoDO> getAirUserList(UserInfoDO airUserDO);
+    public List<UserInfoDO> getUserList(UserInfoDO UserDO);
 
     /**
-     * 描述： select count air_user
+     * 描述： select count _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirUserCount(UserInfoDO airUserDO);
+    public Integer getUserCount(UserInfoDO UserDO);
 
     /**
-     * 描述： insert into air_user
+     * 描述： insert into _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirUser(UserInfoDO airUserDO);
+    public Integer insertUser(UserInfoDO UserDO);
 
     /**
-     * 描述： update air_user
+     * 描述： update _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirUser(UserInfoDO airUserDO);
+    public Integer updateUser(UserInfoDO UserDO);
 
     /**
-     * 描述： delete from air_user
+     * 描述： delete from _user
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirUser(UserInfoDO airUserDO);
+    public Integer deleteUser(UserInfoDO UserDO);
     
     
 }

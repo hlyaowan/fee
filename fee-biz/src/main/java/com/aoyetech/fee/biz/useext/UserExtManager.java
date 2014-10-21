@@ -6,43 +6,43 @@ import com.aoyetech.fee.domain.ext.UserExtDO;
 
 public interface UserExtManager {
     /**
-     * 描述： select air_user_ext
+     * 描述： select _user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<UserExtDO> getAirUserExtList(UserExtDO airUserExtDO);
+    public List<UserExtDO> getUserExtList(UserExtDO UserExtDO);
     /**
-     * 描述： select air_user_ext
+     * 描述： select _user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public UserExtDO getAirUserExtInfo(UserExtDO airUserExtDO);
+    public UserExtDO getUserExtInfo(UserExtDO UserExtDO);
 
     /**
-     * 描述： select count air_user_ext
+     * 描述： select count _user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirUserExtCount(UserExtDO airUserExtDO);
+    public Integer getUserExtCount(UserExtDO UserExtDO);
 
     /**
-     * 描述： insert into air_user_ext
+     * 描述： insert into _user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirUserExt(UserExtDO airUserExtDO);
+    public Integer insertUserExt(UserExtDO UserExtDO);
 
     /**
-     * 描述： update air_user_ext
+     * 描述： update _user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirUserExt(UserExtDO airUserExtDO);
+    public Integer updateUserExt(UserExtDO UserExtDO);
 
     /**
-     * 描述： delete from air_user_ext
+     * 描述： delete from _user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirUserExt(UserExtDO airUserExtDO);
+    public Integer deleteUserExt(UserExtDO UserExtDO);
 }

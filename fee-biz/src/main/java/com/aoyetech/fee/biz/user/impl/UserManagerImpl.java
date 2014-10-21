@@ -26,53 +26,53 @@ public class UserManagerImpl implements UserManager {
     }
     
     /**
-     * 描述： insert into air_user
+     * 描述： insert into _user
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirUser(UserInfoDO airUserDO){
-        return userDAO.insertAirUser(airUserDO);
+    public Integer insertUser(UserInfoDO UserDO){
+        return userDAO.insertUser(UserDO);
     }
     
     /**
-     * 描述： select air_user
+     * 描述： select _user
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public List<UserInfoDO> getAirUserList(UserInfoDO airUserDO){
-        return userDAO.getAirUserList(airUserDO);
+    public List<UserInfoDO> getUserList(UserInfoDO UserDO){
+        return userDAO.getUserList(UserDO);
     }
 
     /**
-     * 描述： select count air_user
+     * 描述： select count _user
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirUserCount(UserInfoDO airUserDO){
-        return userDAO.getAirUserCount(airUserDO);
+    public Integer getUserCount(UserInfoDO UserDO){
+        return userDAO.getUserCount(UserDO);
     }
 
 
     /**
-     * 描述： update air_user
+     * 描述： update _user
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirUser(UserInfoDO airUserDO){
-        return userDAO.updateAirUser(airUserDO);
+    public Integer updateUser(UserInfoDO UserDO){
+        return userDAO.updateUser(UserDO);
     }
 
     /**
-     * 描述： delete from air_user
+     * 描述： delete from _user
      * @author 黄磊
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirUser(UserInfoDO airUserDO){
-        return userDAO.deleteAirUser(airUserDO);
+    public Integer deleteUser(UserInfoDO UserDO){
+        return userDAO.deleteUser(UserDO);
     }
 }

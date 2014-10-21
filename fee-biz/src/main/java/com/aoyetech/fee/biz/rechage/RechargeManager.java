@@ -7,43 +7,43 @@ import com.aoyetech.fee.domain.recharge.RechargeDO;
 public interface RechargeManager {
 
     /**
-     * 描述： select air_recharge
+     * 描述： select _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<RechargeDO> getAirRechargeList(int start,int count);
+    public List<RechargeDO> getRechargeList(int start,int count);
     /**
-     * 描述： select air_recharge
+     * 描述： select _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
-    public RechargeDO getAirRechargeEntity(RechargeDO airRechargeDO);
+    public RechargeDO getRechargeEntity(RechargeDO RechargeDO);
 
     /**
-     * 描述： select count air_recharge
+     * 描述： select count _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirRechargeCount(RechargeDO airRechargeDO);
+    public Integer getRechargeCount(RechargeDO RechargeDO);
 
     /**
-     * 描述： insert into air_recharge
+     * 描述： insert into _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirRecharge(RechargeDO airRechargeDO);
+    public Integer insertRecharge(RechargeDO RechargeDO);
 
     /**
-     * 描述： update air_recharge
+     * 描述： update _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirRecharge(RechargeDO airRechargeDO);
+    public Integer updateRecharge(RechargeDO RechargeDO);
 
     /**
-     * 描述： delete from air_recharge
+     * 描述： delete from _recharge
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirRecharge(RechargeDO airRechargeDO);
+    public Integer deleteRecharge(RechargeDO RechargeDO);
 }
