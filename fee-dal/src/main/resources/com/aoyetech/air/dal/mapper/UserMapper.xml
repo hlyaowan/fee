@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoyetech.air.dal.dao.user.UserDAO">
+	<!-- 返回User 或者List<User> -->
+	<resultMap id="UserInfoDO" type="UserInfoDO">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="integral" property="integral" />
+		<result column="planeGrade" property="planegrade" />
+		<result column="masonry" property="masonry" />
+		<result column="historyNum" property="historynum" />
+		<result column="petOne" property="petone" />
+		<result column="petTwo" property="pettwo" />
+		<result column="petThree" property="petthree" />
+		<result column="petFour" property="petfour" />
+		<result column="petFive" property="petfive" />
+		<result column="petSix" property="petsix" />
+		<result column="currentBlackStage" property="currentblackstage" />
+		<result column="isBlackStateUnlock" property="isblackstateunlock" />
+		<result column="isNewPlayer" property="isnewplayer" />
+	</resultMap>
+
+	<select id="getUserInfoDO" parameterType="UserInfoDO" resultMap="UserInfoDO">
+		select * from air_user where name=#{name}
+	</select>
+
+
+	<!-- select 基本语句 -->
+	<select id="airUser_select" parameterType="UserInfoDO"
+		resultType="UserInfoDO">
+		select id as id,
+		name as name,
+		password as password,
+		integral
+		as
+		integral,
+		planegrade as planegrade,
+		masonry as masonry,
+		historynum as
+		historynum,
+		petone as petone,
+		pettwo as pettwo,
+		petthree as petthree,
+		petfour as petfour,
+		petfive as petfive,
+		petsix as petsix,
+		currentblackstage as currentblackstage,
+		isblackstateunlock as
+		isblackstateunlock,
+		isnewplayer as isnewplayer
+		from air_user
+	</select>
+
+
+	<!-- select count() 基本语句 -->
+	<select id="airUser_count" parameterType="UserInfoDO"
+		resultType="java.lang.Integer">
+		select count(1) from air_user
+	</select>
+
+	<!-- insert into 基本语句 -->
+	<insert id="airUser_insert" parameterType="UserInfoDO">
+		insert into
+		air_user(name,password,integral,planegrade,masonry,historynum,petone,pettwo,petthree,petfour,petfive,petsix,currentblackstage,isblackstateunlock,isnewplayer)
+		values(#{name},#{password},#{integral},#{planegrade},#{masonry},#{historynum},#{petone},#{pettwo},#{petthree},#{petfour},#{petfive},#{petsix},#{currentblackstage},#{isblackstateunlock},#{isnewplayer})
+		<selectKey resultType="int" keyProperty="id">   
+			<![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
+		</selectKey>
+	</insert>
+
+	<!-- update 基本语句 -->
+	<update id="airUser_update" parameterType="UserInfoDO">
+		update air_user
+		<trim prefix="SET" suffixOverrides=",">
+			 <if test="password != null">password=#{password},</if> 
+			 <if test="integral != null">integral=#{integral},</if>
+			 <if test="planegrade != null">planegrade=#{planegrade},</if>
+			 <if test="masonry != null">masonry=#{masonry},</if>
+			 <if test="historynum != null">historynum=#{historynum},</if>
+			 <if test="petone != null">petone=#{petone},</if>
+			 <if test="pettwo != null">pettwo=#{pettwo},</if>
+			 <if test="petthree != null">petthree=#{petthree},</if>
+			 <if test="petfour != null">petfour=#{petfour},</if>
+			 <if test="petfive != null">petfive=#{petfive},</if>
+			 <if test="petsix != null">petsix=#{petsix},</if>
+			 <if test="currentblackstage != null">currentblackstage=#{currentblackstage},</if>
+			 <if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock},</if>
+			 <if test="isnewplayer != null">isnewplayer=#{isnewplayer},</if>
+			 <if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock}</if>
+		</trim>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="name != null">
+				name=#{name}
+			</if>
+		</trim>
+	</update>
+
+	<!-- delete 基本语句 -->
+	<delete id="airUser_delete" parameterType="UserInfoDO">
+		delete from air_user
+		where id = #id#
+	</delete>
+</mapper>

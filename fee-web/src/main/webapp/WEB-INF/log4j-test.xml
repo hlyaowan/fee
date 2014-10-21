@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ========================== 鑷畾涔夎緭鍑烘牸寮忚鏄�=============================== -->
+	<!-- %p 杈撳嚭浼樺厛绾э紝鍗矰EBUG锛孖NFO锛學ARN锛孍RROR锛孎ATAL -->
+	<!-- #%r 杈撳嚭鑷簲鐢ㄥ惎鍔ㄥ埌杈撳嚭璇og淇℃伅鑰楄垂鐨勬绉掓暟 -->
+	<!-- #%c 杈撳嚭鎵�睘鐨勭被鐩紝閫氬父灏辨槸鎵�湪绫荤殑鍏ㄥ悕 -->
+	<!-- #%t 杈撳嚭浜х敓璇ユ棩蹇椾簨浠剁殑绾跨▼鍚�-->
+	<!-- #%n 杈撳嚭涓�釜鍥炶溅鎹㈣绗︼紝Windows骞冲彴涓衡�\r\n鈥濓紝Unix骞冲彴涓衡�\n鈥�-->
+	<!-- #%d 杈撳嚭鏃ュ織鏃堕棿鐐圭殑鏃ユ湡鎴栨椂闂达紝榛樿鏍煎紡涓篒SO8601锛屼篃鍙互鍦ㄥ叾鍚庢寚瀹氭牸寮忥紝姣斿锛�d{yyy MMM dd HH:mm:ss,SSS}锛岃緭鍑虹被浼硷細2002骞�0鏈�8鏃�
+		22锛�0锛�8锛�21 -->
+	<!-- #%l 杈撳嚭鏃ュ織浜嬩欢鐨勫彂鐢熶綅缃紝鍖呮嫭绫荤洰鍚嶃�鍙戠敓鐨勭嚎绋嬶紝浠ュ強鍦ㄤ唬鐮佷腑鐨勮鏁般�涓句緥锛歍estlog4.main(TestLog4.java:10) -->
+	<!-- ========================================================================== -->
+
+	<!-- ========================== 杈撳嚭鏂瑰紡璇存槑================================ -->
+	<!-- Log4j鎻愪緵鐨刟ppender鏈変互涓嬪嚑绉� -->
+	<!-- org.apache.log4j.ConsoleAppender(鎺у埗鍙�, -->
+	<!-- org.apache.log4j.FileAppender(鏂囦欢), -->
+	<!-- org.apache.log4j.DailyRollingFileAppender(姣忓ぉ浜х敓涓�釜鏃ュ織鏂囦欢), -->
+	<!-- org.apache.log4j.RollingFileAppender(鏂囦欢澶у皬鍒拌揪鎸囧畾灏哄鐨勬椂鍊欎骇鐢熶竴涓柊鐨勬枃浠�, -->
+	<!-- org.apache.log4j.WriterAppender(灏嗘棩蹇椾俊鎭互娴佹牸寮忓彂閫佸埌浠绘剰鎸囧畾鐨勫湴鏂� -->
+	<!-- ========================================================================== -->
+
+	<appender name="openapi-root" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${log.rootpath}/openapi-root.log" />
+		<param name="DatePattern" value="'openapi-root.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="openapi" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${log.rootpath}/openapi.log" />
+		<param name="DatePattern" value="'openapi.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="apache" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${log.rootpath}/apache.log" />
+		<param name="DatePattern" value="'apache.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="tyyd" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${log.rootpath}/tyyd.log" />
+		<param name="DatePattern" value="'tyyd.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+	</appender>
+	<appender name="spring" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${log.rootpath}/daily.log" />
+		<param name="DatePattern" value="'spring.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.springframework" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="spring" />
+	</logger>
+	<logger name="org.apache" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="apache" />
+	</logger>
+	<logger name="com.tyyd.open.api" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="openapi" />
+	</logger>
+	<logger name="com.tyyd" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="tyyd" />
+	</logger>
+	<logger name="org.springframework" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="spring" />
+	</logger>
+
+	<root>
+		<priority value="WARN" />
+		<appender-ref ref="openapi-root" />
+	</root>
+
+</log4j:configuration>  
