@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       ">
+
+	<context:component-scan base-package="com.xibo.uuline.biz.bo" />
+
+	<bean id="cityBO" class="com.xibo.uuline.biz.bo.city.CityBO"></bean>
+
+	<bean id="countryBO" class="com.xibo.uuline.biz.bo.country.CountryBO"></bean>
+
+	<bean id="ticketBO" class="com.xibo.uuline.biz.bo.ticket.TicketBO"></bean>
+
+	<bean id="productContentBO" class="com.xibo.uuline.biz.bo.product.ProductContentBO"></bean>
+
+	<bean id="managerBO" class="com.xibo.uuline.biz.bo.manager.ManagerBO"></bean>
+
+	<bean id="managerLoggerBO" class="com.xibo.uuline.biz.bo.manager.ManagerLoggerBO"></bean>
+
+	<bean id="managerGroupBO" class="com.xibo.uuline.biz.bo.manager.ManagerGroupBO"></bean>
+	
+	<bean id="defaultScrollPicBO" class="com.xibo.uuline.biz.bo.scrollpic.DefaultScrollPicBO"></bean>
+
+</beans>

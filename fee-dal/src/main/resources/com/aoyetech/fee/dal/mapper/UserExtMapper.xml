@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoyetech.air.dal.dao.useext.UserExtDAO">
+	
+
+	<!-- select 基本语句 -->
+	<select id="airUserExt_select" parameterType="airUserExtDO"
+		resultType="airUserExtDO">
+		select id as id,
+		user_id as userId,
+		mobile as mobile,
+		auth_id as authId,
+		cp_service_id as cpServiceId,
+		cp_id as cpId,
+		keymd5 as
+		keymd5,
+		channel_id as channelId,
+		add_time as addTime,
+		content_info as
+		contentInfo,
+		region as region,
+		craft_name as craftName,
+		driver_name as
+		driverName,
+		person_name as personName
+		from air_user_ext WHERE 1 = 1
+	</select>
+
+	<!-- select 基本语句 -->
+	<select id="airUserExt_select_entity" parameterType="airUserExtDO"
+		resultType="airUserExtDO">
+		select id as id,
+		user_id as userId,
+		mobile as mobile,
+		auth_id as authId,
+		cp_service_id as cpServiceId,
+		cp_id as cpId,
+		keymd5 as
+		keymd5,
+		channel_id as channelId,
+		add_time as addTime,
+		content_info as
+		contentInfo,
+		region as region,
+		craft_name as craftName,
+		driver_name as
+		driverName,
+		person_name as personName
+		from air_user_ext WHERE auth_id = #{authId}
+	</select>
+
+	<!-- select count() 基本语句 -->
+	<select id="airUserExt_count" parameterType="airUserExtDO"
+		resultType="java.lang.Integer">
+		select count(1) from air_user_ext
+		where 1 = 1
+	</select>
+
+
+	<!-- insert into 基本语句 -->
+	<insert id="airUserExt_insert" parameterType="airUserExtDO">
+		insert into
+		air_user_ext(user_id,mobile,auth_id,cp_service_id,cp_id,keymd5,channel_id,add_time,content_info,region,craft_name,driver_name,person_name)
+		values(#{userId},#{mobile},#{authId},#{cpServiceId},#{cpId},#{keymd5},#{channelId},#{addTime},#{contentInfo},#{region},#{craftName},#{driverName},#{personName})
+	</insert>
+
+
+	<!-- update 基本语句 -->
+	<update id="airUserExt_update" parameterType="airUserExtDO">
+		update
+		air_user_ext
+		<trim prefix="SET" suffixOverrides=",">
+			 <if test="craftName != null">craft_name=#{craftName},</if>
+			 <if test="driverName != null">driver_name=#{driverName},</if> 
+			 <if test="personName != null">person_name=#{personName}</if> 
+		</trim>
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="authId != null">
+				auth_id=#{authId}
+			</if>
+		</trim>
+	</update>
+
+
+	<!-- delete 基本语句 -->
+	<delete id="airUserExt_delete" parameterType="airUserExtDO">
+		delete from
+		air_user_ext
+		where id = #id#
+	</delete>
+</mapper>

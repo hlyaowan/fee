@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aoyetech.air.dal.dao.rechage.AirRechargeDAO">
+
+	
+
+	<!-- select 基本语句 -->
+	<select id="airRecharge_select" parameterType="airRechargeDO"
+		resultType="airRechargeDO">
+		select id as id,
+		recharge_name as rechargeName,
+		recharge_number as
+		rechargeNumber,
+		description as description,
+		create_time as createTime,
+		update_time as updateTime,
+		extendation as
+		extendation
+		from air_recharge
+		<if test="start != null and count != null">
+			limit #{start}, #{count}
+		</if>
+	</select>
+	
+	<!-- select 基本语句 -->
+	<select id="airRecharge_select_entity" parameterType="airRechargeDO"
+		resultType="airRechargeDO">
+		select id as id,
+		recharge_name as rechargeName,
+		recharge_number as
+		rechargeNumber,
+		description as description,
+		create_time as createTime,
+		update_time as updateTime,
+		extendation as
+		extendation
+		from air_recharge WHERE id = #{id}
+	</select>
+
+	<!-- select count() 基本语句 -->
+	<select id="airRecharge_count" parameterType="airRechargeDO"
+		resultType="java.lang.Integer">
+		select count(1) from air_recharge
+	</select>
+
+	<!-- insert into 基本语句 -->
+	<insert id="airRecharge_insert" parameterType="airRechargeDO">
+		insert into
+		air_recharge(recharge_name,recharge_number,description,create_time,update_time,extendation)
+		values(#rechargeName#,#rechargeNumber#,#description#,#createTime#,#updateTime#,#extendation#)
+	</insert>
+
+
+	<!-- update 基本语句 -->
+	<update id="airRecharge_update" parameterType="airRechargeDO">
+		update
+		air_recharge
+		set
+		recharge_name=#rechargeName#,recharge_number=#rechargeNumber#,description=#description#,create_time=#createTime#,update_time=#updateTime#,extendation=#extendation#
+		where id = #id#
+	</update>
+
+	<!-- delete 基本语句 -->
+	<delete id="airRecharge_delete" parameterType="airRechargeDO">
+		delete from
+		air_recharge
+		where id = #id#
+	</delete>
+</mapper>

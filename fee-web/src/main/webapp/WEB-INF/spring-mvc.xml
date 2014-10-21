@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/mvc     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       ">
+	<context:component-scan base-package="com.aoyetech.fee.web.app.controller" />
+
+	<mvc:default-servlet-handler />
+	<mvc:view-controller path="/" view-name="redirect:/index.htm"/> 
+	<mvc:resources mapping="/**" location="/" order="1"/> 
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="order" value="1" />
+		<property name="pathMatcher" ref="pathMatcher" />
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="conversionService" ref="conversionService" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="customPropertyEditorRegistrar"
+		class="com.aoyetech.fee.web.app.editor.CustomPropertyEditorRegistrar" />
+
+	<bean name="handlerAdapter"
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="conversionService" ref="conversionService" />
+				<property name="propertyEditorRegistrars">
+					<list>
+						<ref bean="customPropertyEditorRegistrar" />
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter"></bean>
+				<bean class="org.springframework.http.converter.ResourceHttpMessageConverter"></bean>
+				<bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"></bean>
+				<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="handlerMapping"
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="order" value="0" />
+		<property name="pathMatcher" ref="pathMatcher" />
+	</bean>
+
+	<bean id="pathMatcher" class="org.springframework.util.AntPathMatcher">
+		<property name="trimTokens" value="false" />
+	</bean>
+
+
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.aoyetech.fee.web.app.convert.IntegerConverter" />
+				<bean class="com.aoyetech.fee.web.app.convert.LongConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- <mvc:resources mapping="/static/**" location="/static/" /> -->
+	<bean id="contentNegotiatingViewResolver"
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="ignoreAcceptHeader" value="true" />
+		<property name="defaultContentType" value="text/html;charset=UTF-8" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="htm" value="text/html;charset=UTF-8" />
+				<entry key="json" value="application/json;charset=UTF-8" />
+				<entry key="xml" value="application/xml;charset=UTF-8" />
+			</map>
+		</property>
+		<property name="favorParameter" value="false" />
+		<property name="favorPathExtension" value="true" />
+		<property name="viewResolvers">
+			<list>
+				<bean id="htmViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+					<property name="contentType" value="text/html;charset=UTF-8" />
+					<property name="suffix" value=".vm" />
+					<property name="cache" value="true" />
+					<property name="dateToolAttribute" value="date" />
+					<property name="numberToolAttribute" value="number" />
+					<property name="exposeRequestAttributes" value="true" />
+					<property name="allowRequestOverride" value="true" />
+					<property name="allowSessionOverride" value="true" />
+					<property name="exposeSpringMacroHelpers" value="false" />
+					<property name="toolboxConfigLocation" value="/WEB-INF/tools.xml" /> 
+					<property name="requestContextAttribute" value="rc"></property>
+				</bean>
+				<bean id="JSPViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/WEB-INF/jsp/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+				<!--bean id="CSSViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+					/> <property name="prefix" value="/WEB-INF/css/" /> <property name="suffix" 
+					value="/" /> </bean -->
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+					<property name="extractValueFromSingleKeyModel" value="false" />
+					<property name="contentType" value="	application/json;charset=UTF-8" />
+				</bean>
+				<bean class="com.aoyetech.fee.web.app.view.MarshallingView">
+					<constructor-arg>
+						<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+							<property name="packagesToScan">
+								<array>
+									<value>com.aoyetech.fee.domain</value>
+								</array>
+							</property>
+
+							<property name="marshallerProperties">
+								<map>
+									<entry key="jaxb.encoding" value="UTF-8" />
+									<entry>
+										<key>
+											<value>jaxb.fragment</value>
+										</key>
+										<value type="boolean">true</value>
+									</entry>
+								</map>
+							</property>
+						</bean>
+					</constructor-arg>
+					<property name="contentType" value="application/xml;charset=UTF-8" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/vm" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+				<prop key="contentType">text/html</prop>
+				<prop key="file.resource.loader.cache">true</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
