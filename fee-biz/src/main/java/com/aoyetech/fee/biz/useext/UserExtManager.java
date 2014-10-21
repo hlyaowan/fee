@@ -2,7 +2,7 @@ package com.aoyetech.fee.biz.useext;
 
 import java.util.List;
 
-import com.aoyetech.fee.domain.ext.AirUserExtDO;
+import com.aoyetech.fee.domain.ext.UserExtDO;
 
 public interface UserExtManager {
     /**
@@ -10,39 +10,39 @@ public interface UserExtManager {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<AirUserExtDO> getAirUserExtList(AirUserExtDO airUserExtDO);
+    public List<UserExtDO> getAirUserExtList(UserExtDO airUserExtDO);
     /**
      * 描述： select air_user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public AirUserExtDO getAirUserExtInfo(AirUserExtDO airUserExtDO);
+    public UserExtDO getAirUserExtInfo(UserExtDO airUserExtDO);
 
     /**
      * 描述： select count air_user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirUserExtCount(AirUserExtDO airUserExtDO);
+    public Integer getAirUserExtCount(UserExtDO airUserExtDO);
 
     /**
      * 描述： insert into air_user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirUserExt(AirUserExtDO airUserExtDO);
+    public Integer insertAirUserExt(UserExtDO airUserExtDO);
 
     /**
      * 描述： update air_user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirUserExt(AirUserExtDO airUserExtDO);
+    public Integer updateAirUserExt(UserExtDO airUserExtDO);
 
     /**
      * 描述： delete from air_user_ext
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirUserExt(AirUserExtDO airUserExtDO);
+    public Integer deleteAirUserExt(UserExtDO airUserExtDO);
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.aoyetech.fee.biz.rechage.RechargeManager;
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
 import com.aoyetech.fee.dal.dao.rechage.RechargeDAO;
-import com.aoyetech.fee.domain.recharge.AirRechargeDO;
+import com.aoyetech.fee.domain.recharge.RechargeDO;
 
 
 @Component
@@ -24,8 +24,8 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public List<AirRechargeDO> getAirRechargeList(int start,int count) {
-        AirRechargeDO airRechargeDO =new AirRechargeDO();
+    public List<RechargeDO> getAirRechargeList(int start,int count) {
+        RechargeDO airRechargeDO =new RechargeDO();
         airRechargeDO.setStart(start);
         airRechargeDO.setCount(count);
         return airRechargeDAO.getAirRechargeList(airRechargeDO);
@@ -37,7 +37,7 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public AirRechargeDO getAirRechargeEntity(AirRechargeDO airRechargeDO) {
+    public RechargeDO getAirRechargeEntity(RechargeDO airRechargeDO) {
         return airRechargeDAO.getAirRechargeEntity(airRechargeDO);
     }
 
@@ -47,7 +47,7 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirRechargeCount(AirRechargeDO airRechargeDO) {
+    public Integer getAirRechargeCount(RechargeDO airRechargeDO) {
         return airRechargeDAO.getAirRechargeCount(airRechargeDO);
     }
 
@@ -57,7 +57,7 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirRecharge(AirRechargeDO airRechargeDO) {
+    public Integer insertAirRecharge(RechargeDO airRechargeDO) {
         return airRechargeDAO.insertAirRecharge(airRechargeDO);
     }
 
@@ -67,7 +67,7 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirRecharge(AirRechargeDO airRechargeDO) {
+    public Integer updateAirRecharge(RechargeDO airRechargeDO) {
         return airRechargeDAO.updateAirRecharge(airRechargeDO);
     }
 
@@ -77,7 +77,7 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirRecharge(AirRechargeDO airRechargeDO) {
+    public Integer deleteAirRecharge(RechargeDO airRechargeDO) {
         return airRechargeDAO.deleteAirRecharge(airRechargeDO);
     }
 }

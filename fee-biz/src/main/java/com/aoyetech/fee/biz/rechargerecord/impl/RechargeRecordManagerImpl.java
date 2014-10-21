@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.aoyetech.fee.biz.rechargerecord.RechargeRecordManager;
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
 import com.aoyetech.fee.dal.dao.rechargerecord.RechargeRecordDAO;
-import com.aoyetech.fee.domain.rechargerecord.AirRechargeRecordDO;
+import com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO;
 
 
 @Component
@@ -24,7 +24,7 @@ public class RechargeRecordManagerImpl implements RechargeRecordManager {
      * Date 2014-09-17
      */
     @Override
-    public List<AirRechargeRecordDO> getAirRechargeRecordList(AirRechargeRecordDO airRechargeRecordDO) {
+    public List<RechargeRecordDO> getAirRechargeRecordList(RechargeRecordDO airRechargeRecordDO) {
         return airRechargeRecordDAO.getAirRechargeRecordList(airRechargeRecordDO);
     }
     
@@ -34,7 +34,7 @@ public class RechargeRecordManagerImpl implements RechargeRecordManager {
      * Date 2014-09-17
      */
     @Override
-    public AirRechargeRecordDO getAirRechargeRecordEntity(AirRechargeRecordDO airRechargeRecordDO) {
+    public RechargeRecordDO getAirRechargeRecordEntity(RechargeRecordDO airRechargeRecordDO) {
         return airRechargeRecordDAO.getAirRechargeRecordEntity(airRechargeRecordDO);
     }
 
@@ -44,7 +44,7 @@ public class RechargeRecordManagerImpl implements RechargeRecordManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirRechargeRecordCount(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer getAirRechargeRecordCount(RechargeRecordDO airRechargeRecordDO) {
         return airRechargeRecordDAO.getAirRechargeRecordCount(airRechargeRecordDO);
     }
 
@@ -54,7 +54,7 @@ public class RechargeRecordManagerImpl implements RechargeRecordManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer insertAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
         return airRechargeRecordDAO.insertAirRechargeRecord(airRechargeRecordDO);
     }
 
@@ -64,7 +64,7 @@ public class RechargeRecordManagerImpl implements RechargeRecordManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer updateAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
         return airRechargeRecordDAO.updateAirRechargeRecord(airRechargeRecordDO);
     }
 
@@ -74,7 +74,7 @@ public class RechargeRecordManagerImpl implements RechargeRecordManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer deleteAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
         return airRechargeRecordDAO.deleteAirRechargeRecord(airRechargeRecordDO);
     }
 }

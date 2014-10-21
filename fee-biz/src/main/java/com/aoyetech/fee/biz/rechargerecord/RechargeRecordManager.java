@@ -2,7 +2,7 @@ package com.aoyetech.fee.biz.rechargerecord;
 
 import java.util.List;
 
-import com.aoyetech.fee.domain.rechargerecord.AirRechargeRecordDO;
+import com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO;
 
 public interface RechargeRecordManager {
 
@@ -11,39 +11,39 @@ public interface RechargeRecordManager {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<AirRechargeRecordDO> getAirRechargeRecordList(AirRechargeRecordDO airRechargeRecordDO);
+    public List<RechargeRecordDO> getAirRechargeRecordList(RechargeRecordDO airRechargeRecordDO);
     /**
      * 描述： select air_recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
-    public AirRechargeRecordDO getAirRechargeRecordEntity(AirRechargeRecordDO airRechargeRecordDO);
+    public RechargeRecordDO getAirRechargeRecordEntity(RechargeRecordDO airRechargeRecordDO);
 
     /**
      * 描述： select count air_recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirRechargeRecordCount(AirRechargeRecordDO airRechargeRecordDO);
+    public Integer getAirRechargeRecordCount(RechargeRecordDO airRechargeRecordDO);
 
     /**
      * 描述： insert into air_recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO);
+    public Integer insertAirRechargeRecord(RechargeRecordDO airRechargeRecordDO);
 
     /**
      * 描述： update air_recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO);
+    public Integer updateAirRechargeRecord(RechargeRecordDO airRechargeRecordDO);
 
     /**
      * 描述： delete from air_recharge_record
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO);
+    public Integer deleteAirRechargeRecord(RechargeRecordDO airRechargeRecordDO);
 }

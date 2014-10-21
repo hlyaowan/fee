@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.aoyetech.fee.biz.useext.UserExtManager;
 import com.aoyetech.fee.dal.dao.useext.UserExtDAO;
-import com.aoyetech.fee.domain.ext.AirUserExtDO;
+import com.aoyetech.fee.domain.ext.UserExtDO;
 
 
 @Component
@@ -21,7 +21,7 @@ public class UserExtManagerImpl implements UserExtManager {
      * Date 2014-09-17
      */
     @Override
-    public List<AirUserExtDO> getAirUserExtList(AirUserExtDO airUserExtDO) {
+    public List<UserExtDO> getAirUserExtList(UserExtDO airUserExtDO) {
         return userExtDAO.getAirUserExtList(airUserExtDO);
     }
     
@@ -32,7 +32,7 @@ public class UserExtManagerImpl implements UserExtManager {
      * Date 2014-09-17
      */
     @Override
-    public AirUserExtDO getAirUserExtInfo(AirUserExtDO airUserExtDO) {
+    public UserExtDO getAirUserExtInfo(UserExtDO airUserExtDO) {
         return userExtDAO.getAirUserExtInfo(airUserExtDO);
     }
 
@@ -42,7 +42,7 @@ public class UserExtManagerImpl implements UserExtManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirUserExtCount(AirUserExtDO airUserExtDO) {
+    public Integer getAirUserExtCount(UserExtDO airUserExtDO) {
         return userExtDAO.getAirUserExtCount(airUserExtDO);
     }
 
@@ -52,7 +52,7 @@ public class UserExtManagerImpl implements UserExtManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirUserExt(AirUserExtDO airUserExtDO) {
+    public Integer insertAirUserExt(UserExtDO airUserExtDO) {
         return userExtDAO.insertAirUserExt(airUserExtDO);
     }
 
@@ -62,7 +62,7 @@ public class UserExtManagerImpl implements UserExtManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirUserExt(AirUserExtDO airUserExtDO) {
+    public Integer updateAirUserExt(UserExtDO airUserExtDO) {
         return userExtDAO.updateAirUserExt(airUserExtDO);
     }
 
@@ -72,7 +72,7 @@ public class UserExtManagerImpl implements UserExtManager {
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirUserExt(AirUserExtDO airUserExtDO) {
+    public Integer deleteAirUserExt(UserExtDO airUserExtDO) {
         return userExtDAO.deleteAirUserExt(airUserExtDO);
     }
 }
