@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
 import com.aoyetech.fee.dal.dao.useext.UserExtDAO;
-import com.aoyetech.fee.domain.ext.AirUserExtDO;
+import com.aoyetech.fee.domain.ext.UserExtDO;
 
 
 @Repository
@@ -17,7 +17,7 @@ public class UserExtDAOImpl extends MybatisTemplate implements UserExtDAO {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<AirUserExtDO> getAirUserExtList(AirUserExtDO airUserExtDO) {
+    public List<UserExtDO> getAirUserExtList(UserExtDO airUserExtDO) {
         return super.queryForList("airUserExt_select", airUserExtDO);
     }
     
@@ -26,8 +26,8 @@ public class UserExtDAOImpl extends MybatisTemplate implements UserExtDAO {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public AirUserExtDO getAirUserExtInfo(AirUserExtDO airUserExtDO) {
-        return (AirUserExtDO)super.get("airUserExt_select_entity", airUserExtDO);
+    public UserExtDO getAirUserExtInfo(UserExtDO airUserExtDO) {
+        return (UserExtDO)super.get("airUserExt_select_entity", airUserExtDO);
     }
 
     /**
@@ -35,7 +35,7 @@ public class UserExtDAOImpl extends MybatisTemplate implements UserExtDAO {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer getAirUserExtCount(AirUserExtDO airUserExtDO) {
+    public Integer getAirUserExtCount(UserExtDO airUserExtDO) {
         return (Integer) super.getTotalCount("airUserExt_count", airUserExtDO);
     }
 
@@ -44,7 +44,7 @@ public class UserExtDAOImpl extends MybatisTemplate implements UserExtDAO {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer insertAirUserExt(AirUserExtDO airUserExtDO) {
+    public Integer insertAirUserExt(UserExtDO airUserExtDO) {
         return super.save("airUserExt_insert", airUserExtDO);
     }
 
@@ -53,7 +53,7 @@ public class UserExtDAOImpl extends MybatisTemplate implements UserExtDAO {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer updateAirUserExt(AirUserExtDO airUserExtDO) {
+    public Integer updateAirUserExt(UserExtDO airUserExtDO) {
         return super.update("airUserExt_update", airUserExtDO);
     }
 
@@ -62,7 +62,7 @@ public class UserExtDAOImpl extends MybatisTemplate implements UserExtDAO {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public Integer deleteAirUserExt(AirUserExtDO airUserExtDO) {
+    public Integer deleteAirUserExt(UserExtDO airUserExtDO) {
         return super.update("airUserExt_delete", airUserExtDO);
     }
 }

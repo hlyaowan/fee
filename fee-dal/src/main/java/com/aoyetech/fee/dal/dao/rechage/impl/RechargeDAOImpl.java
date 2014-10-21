@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
 import com.aoyetech.fee.dal.dao.rechage.RechargeDAO;
-import com.aoyetech.fee.domain.recharge.AirRechargeDO;
+import com.aoyetech.fee.domain.recharge.RechargeDO;
 
 
 @Repository
@@ -18,7 +18,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      * Date 2014-09-17
      */
     @Override
-    public List<AirRechargeDO> getAirRechargeList(AirRechargeDO airRechargeDO) {
+    public List<RechargeDO> getAirRechargeList(RechargeDO airRechargeDO) {
         return super.queryForList("airRecharge_select", airRechargeDO);
     }
     
@@ -28,7 +28,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      * Date 2014-09-17
      */
     @Override
-    public AirRechargeDO getAirRechargeEntity(AirRechargeDO airRechargeDO) {
+    public RechargeDO getAirRechargeEntity(RechargeDO airRechargeDO) {
         return super.get("airRecharge_select", airRechargeDO);
     }
 
@@ -38,7 +38,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirRechargeCount(AirRechargeDO airRechargeDO) {
+    public Integer getAirRechargeCount(RechargeDO airRechargeDO) {
         return (Integer) super.getTotalCount("airRecharge_count", airRechargeDO);
     }
 
@@ -48,7 +48,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirRecharge(AirRechargeDO airRechargeDO) {
+    public Integer insertAirRecharge(RechargeDO airRechargeDO) {
         return super.update("airRecharge_insert", airRechargeDO);
     }
 
@@ -58,7 +58,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirRecharge(AirRechargeDO airRechargeDO) {
+    public Integer updateAirRecharge(RechargeDO airRechargeDO) {
         return super.update("airRecharge_update", airRechargeDO);
     }
 
@@ -68,7 +68,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirRecharge(AirRechargeDO airRechargeDO) {
+    public Integer deleteAirRecharge(RechargeDO airRechargeDO) {
         return super.update("airRecharge_delete", airRechargeDO);
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
 import com.aoyetech.fee.dal.dao.rechargerecord.RechargeRecordDAO;
-import com.aoyetech.fee.domain.rechargerecord.AirRechargeRecordDO;
+import com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO;
 
 
 @Repository
@@ -18,7 +18,7 @@ public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRe
      * Date 2014-09-17
      */
     @Override
-    public List<AirRechargeRecordDO> getAirRechargeRecordList(AirRechargeRecordDO airRechargeRecordDO) {
+    public List<RechargeRecordDO> getAirRechargeRecordList(RechargeRecordDO airRechargeRecordDO) {
         return super.queryForList("airRechargeRecord_select", airRechargeRecordDO);
     }
     
@@ -28,7 +28,7 @@ public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRe
      * Date 2014-09-17
      */
     @Override
-    public AirRechargeRecordDO getAirRechargeRecordEntity(AirRechargeRecordDO airRechargeRecordDO) {
+    public RechargeRecordDO getAirRechargeRecordEntity(RechargeRecordDO airRechargeRecordDO) {
         return super.get("airRechargeRecord_select", airRechargeRecordDO);
     }
 
@@ -38,7 +38,7 @@ public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRe
      * Date 2014-09-17
      */
     @Override
-    public Integer getAirRechargeRecordCount(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer getAirRechargeRecordCount(RechargeRecordDO airRechargeRecordDO) {
         return (Integer) super.getTotalCount("airRechargeRecord_count", airRechargeRecordDO);
     }
 
@@ -48,7 +48,7 @@ public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRe
      * Date 2014-09-17
      */
     @Override
-    public Integer insertAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer insertAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
         return super.update("airRechargeRecord_insert", airRechargeRecordDO);
     }
 
@@ -58,7 +58,7 @@ public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRe
      * Date 2014-09-17
      */
     @Override
-    public Integer updateAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer updateAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
         return super.update("airRechargeRecord_update", airRechargeRecordDO);
     }
 
@@ -68,7 +68,7 @@ public class RechargeRecordDAOImpl extends MybatisTemplate implements RechargeRe
      * Date 2014-09-17
      */
     @Override
-    public Integer deleteAirRechargeRecord(AirRechargeRecordDO airRechargeRecordDO) {
+    public Integer deleteAirRechargeRecord(RechargeRecordDO airRechargeRecordDO) {
         return super.update("airRechargeRecord_delete", airRechargeRecordDO);
     }
 }
