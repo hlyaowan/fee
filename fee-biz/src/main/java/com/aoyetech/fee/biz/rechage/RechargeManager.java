@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.aoyetech.fee.domain.recharge.AirRechargeDO;
 
-public interface AirRechargeManager {
+public interface RechargeManager {
 
     /**
      * 描述： select air_recharge

@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.aoyetech.fee.biz.rechargerecord.AirRechargeRecordManager;
+import com.aoyetech.fee.biz.rechargerecord.RechargeRecordManager;
 import com.aoyetech.fee.dal.core.mybatis.MybatisTemplate;
-import com.aoyetech.fee.dal.dao.rechargerecord.AirRechargeRecordDAO;
+import com.aoyetech.fee.dal.dao.rechargerecord.RechargeRecordDAO;
 import com.aoyetech.fee.domain.rechargerecord.AirRechargeRecordDO;
 
 
 @Component
-public class AirRechargeRecordManagerImpl implements AirRechargeRecordManager {
+public class RechargeRecordManagerImpl implements RechargeRecordManager {
 
     @Autowired
-    private AirRechargeRecordDAO airRechargeRecordDAO;
+    private RechargeRecordDAO airRechargeRecordDAO;
     
     /**
      * 描述： select air_recharge_record
