@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="UserInfoDO" type="com.aoyetech.fee.domain.user.UserInfoDO" />
+		<typeAlias alias="UserExtDO" type="com.aoyetech.fee.domain.ext.UserExtDO" />
+		<typeAlias alias="RechargeRecordDO" type="com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO" />
+		<typeAlias alias="RechargeDO" type="com.aoyetech.fee.domain.recharge.RechargeDO" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/aoyetech/fee/dal/mapper/UserMapper.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/UserExtMapper.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/RechargeRecordMapper.xml" />
+		<mapper resource="com/aoyetech/fee/dal/mapper/RechargeMapper.xml" />
+	</mappers>
+</configuration>	
