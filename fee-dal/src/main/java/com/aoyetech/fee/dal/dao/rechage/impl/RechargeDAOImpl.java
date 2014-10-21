@@ -29,7 +29,7 @@ public class RechargeDAOImpl extends MybatisTemplate implements RechargeDAO {
      */
     @Override
     public RechargeDO getRechargeEntity(RechargeDO RechargeDO) {
-        return super.get("Recharge_select", RechargeDO);
+        return super.get("Recharge_select_entity", RechargeDO);
     }
 
     /**
