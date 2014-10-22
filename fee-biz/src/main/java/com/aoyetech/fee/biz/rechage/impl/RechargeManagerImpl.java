@@ -24,11 +24,12 @@ public class RechargeManagerImpl  implements RechargeManager {
      * Date 2014-09-17
      */
     @Override
-    public List<RechargeDO> getRechargeList(int start,int count) {
-        RechargeDO RechargeDO =new RechargeDO();
-        RechargeDO.setStart(start);
-        RechargeDO.setCount(count);
-        return RechargeDAO.getRechargeList(RechargeDO);
+    public List<RechargeDO> getRechargeList(Integer start,Integer count,Integer appId) {
+        RechargeDO rechargeDO =new RechargeDO();
+        rechargeDO.setStart(start);
+        rechargeDO.setCount(count);
+        rechargeDO.setAppId(appId);
+        return RechargeDAO.getRechargeList(rechargeDO);
     }
     
     /**

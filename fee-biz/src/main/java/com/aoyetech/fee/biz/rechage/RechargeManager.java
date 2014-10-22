@@ -11,7 +11,7 @@ public interface RechargeManager {
      * @author 黄磊
      * Date 2014-09-17
      */
-    public List<RechargeDO> getRechargeList(int start,int count);
+    public List<RechargeDO> getRechargeList(Integer start,Integer count,Integer appId);
     /**
      * 描述： select _recharge
      * @author 黄磊
