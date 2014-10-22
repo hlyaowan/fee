@@ -210,23 +210,17 @@ public class RechargeController {
                 String status = rootElt.elementTextTrim("status");
                 
                 //修改成功的状态
-                RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
-                rechargeRecordDO.setAppId(appId);
-                rechargeRecordDO.setExtendation(confirmId);
-                rechargeRecordDO.setStatus(1);
-                rechargeRecordManagerImpl.updateRechargeRecord(rechargeRecordDO);
-                
                 if (StringUtils.equals(hRet, "1") || StringUtils.equals(hRet, "3")
                     || StringUtils.equals(hRet, "0")) {
                     if (StringUtils.equals(status, "1800") || StringUtils.equals(status, "1801")) {
                         message.setStatus(BusinessCode.NORMAL);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
                         //修改成功的状态
-//                        RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
-//                        rechargeRecordDO.setAppId(appId);
-//                        rechargeRecordDO.setExtendation(confirmId);
-//                        rechargeRecordDO.setStatus(1);
-//                        rechargeRecordManagerImpl.updateRechargeRecord(rechargeRecordDO);
+                        RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
+                        rechargeRecordDO.setAppId(appId);
+                        rechargeRecordDO.setExtendation(confirmId);
+                        rechargeRecordDO.setStatus(1);
+                        rechargeRecordManagerImpl.updateRechargeRecord(rechargeRecordDO);
                     } else {
                         message.setStatus(BusinessCode.OPRATE_ERROR);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
