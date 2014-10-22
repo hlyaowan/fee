@@ -6,6 +6,7 @@
 		<typeAlias alias="UserExtDO" type="com.aoyetech.fee.domain.ext.UserExtDO" />
 		<typeAlias alias="RechargeRecordDO" type="com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO" />
 		<typeAlias alias="RechargeDO" type="com.aoyetech.fee.domain.recharge.RechargeDO" />
+		<typeAlias alias="AppInfo" type="com.aoyetech.fee.domain.app.AppInfo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/aoyetech/fee/dal/mapper/UserMapper.xml" />

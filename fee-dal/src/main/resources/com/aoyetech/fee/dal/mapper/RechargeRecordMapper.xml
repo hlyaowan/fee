@@ -14,7 +14,8 @@
 		create_time as
 		createTime,
 		update_time as updateTime,
-		extendation as extendation
+		extendation as extendation,
+		status as status
 		from
 		recharge_record WHERE 1 = 1
 	</select>
@@ -30,7 +31,8 @@
 		create_time as
 		createTime,
 		update_time as updateTime,
-		extendation as extendation
+		extendation as extendation,
+		status as status
 		from
 		recharge_record WHERE id = #{id}
 	</select>
@@ -45,18 +47,40 @@
 
 	<!-- insert into 基本语句 -->
 	<insert id="RechargeRecord_insert" parameterType="RechargeRecordDO">
-		insert into
-		recharge_record(recharge_name,diamond_number,decribe,create_time,update_time,extendation)
-		values(#rechargeName#,#diamondNumber#,#decribe#,#createTime#,#updateTime#,#extendation#)
+		 insert into recharge_record (id, app_id, recharge_name, 
+      diamond_number, decribe, create_time, 
+      update_time, extendation, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, #{rechargeName,jdbcType=VARCHAR}, 
+      #{diamondNumber,jdbcType=INTEGER}, #{decribe,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{extendation,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
 	</insert>
 
 	<!-- update 基本语句 -->
 	<update id="RechargeRecord_update" parameterType="RechargeRecordDO">
-		update
-		recharge_record
-		set
-		recharge_name=#rechargeName#,diamond_number=#diamondNumber#,decribe=#decribe#,create_time=#createTime#,update_time=#updateTime#,extendation=#extendation#
-		where id = #id#
+		update recharge_record
+    <set >
+      <if test="rechargeName != null" >
+        recharge_name = #{rechargeName,jdbcType=VARCHAR},
+      </if>
+      <if test="diamondNumber != null" >
+        diamond_number = #{diamondNumber,jdbcType=INTEGER},
+      </if>
+      <if test="decribe != null" >
+        decribe = #{decribe,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where app_id = #{appId,jdbcType=INTEGER} and  extendation = #{extendation,jdbcType=VARCHAR}
 	</update>
 
 

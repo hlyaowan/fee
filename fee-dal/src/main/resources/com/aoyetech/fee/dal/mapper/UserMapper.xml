@@ -5,6 +5,7 @@
 	<!-- 返回User 或者List<User> -->
 	<resultMap id="UserInfoDO" type="UserInfoDO">
 		<id column="id" property="id" />
+		<result column="app_id" property="appId" />
 		<result column="name" property="name" />
 		<result column="password" property="password" />
 		<result column="integral" property="integral" />
@@ -22,9 +23,9 @@
 
 
 	<!-- select 基本语句 -->
-	<select id="airUser_select" parameterType="UserInfoDO"
-		resultType="UserInfoDO">
+	<select id="User_select" parameterType="UserInfoDO" resultType="UserInfoDO">
 		select id as id,
+		app_id as appId,
 		name as name,
 		password as password,
 		integral
@@ -35,7 +36,8 @@
 		historynum as
 		historynum,
 		currentblackstage as currentblackstage,
-		isblackstateunlock as
+		isblackstateunlock
+		as
 		isblackstateunlock,
 		isnewplayer as isnewplayer
 		from user
@@ -43,34 +45,33 @@
 
 
 	<!-- select count() 基本语句 -->
-	<select id="airUser_count" parameterType="UserInfoDO"
-		resultType="java.lang.Integer">
+	<select id="User_count" parameterType="UserInfoDO" resultType="java.lang.Integer">
 		select count(1) from user
 	</select>
 
 	<!-- insert into 基本语句 -->
-	<insert id="airUser_insert" parameterType="UserInfoDO">
+	<insert id="User_insert" parameterType="UserInfoDO">
 		insert into
-		user(name,password,integral,grade,masonry,historynum,currentblackstage,isblackstateunlock,isnewplayer)
-		values(#{name},#{password},#{integral},#{grade},#{masonry},#{historynum},#{currentblackstage},#{isblackstateunlock},#{isnewplayer})
+		user(name,app_id,password,integral,grade,masonry,historynum,currentblackstage,isblackstateunlock,isnewplayer)
+		values(#{name},#{appId},#{password},#{integral},#{grade},#{masonry},#{historynum},#{currentblackstage},#{isblackstateunlock},#{isnewplayer})
 		<selectKey resultType="int" keyProperty="id">   
 			<![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
 		</selectKey>
 	</insert>
 
 	<!-- update 基本语句 -->
-	<update id="airUser_update" parameterType="UserInfoDO">
+	<update id="User_update" parameterType="UserInfoDO">
 		update user
 		<trim prefix="SET" suffixOverrides=",">
-			 <if test="password != null">password=#{password},</if> 
-			 <if test="integral != null">integral=#{integral},</if>
-			 <if test="planegrade != null">grade=#{grade},</if>
-			 <if test="masonry != null">masonry=#{masonry},</if>
-			 <if test="historynum != null">historynum=#{historynum},</if>
-			 <if test="currentblackstage != null">currentblackstage=#{currentblackstage},</if>
-			 <if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock},</if>
-			 <if test="isnewplayer != null">isnewplayer=#{isnewplayer},</if>
-			 <if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock}</if>
+			<if test="password != null">password=#{password},</if>
+			<if test="integral != null">integral=#{integral},</if>
+			<if test="grade != null">grade=#{grade},</if>
+			<if test="masonry != null">masonry=#{masonry},</if>
+			<if test="historynum != null">historynum=#{historynum},</if>
+			<if test="currentblackstage != null">currentblackstage=#{currentblackstage},</if>
+			<if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock},</if>
+			<if test="isnewplayer != null">isnewplayer=#{isnewplayer},</if>
+			<if test="isblackstateunlock != null">isblackstateunlock=#{isblackstateunlock}</if>
 		</trim>
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="name != null">
@@ -80,8 +81,9 @@
 	</update>
 
 	<!-- delete 基本语句 -->
-	<delete id="airUser_delete" parameterType="UserInfoDO">
+	<delete id="User_delete" parameterType="UserInfoDO">
 		delete from user
-		where id = #id#
+		where id
+		= #id#
 	</delete>
 </mapper>

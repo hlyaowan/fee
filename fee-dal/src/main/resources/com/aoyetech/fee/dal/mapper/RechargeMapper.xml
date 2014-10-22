@@ -2,13 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aoyetech.fee.dal.dao.rechage.RechargeDAO">
-
-	
-
 	<!-- select 基本语句 -->
 	<select id="Recharge_select" parameterType="RechargeDO"
 		resultType="RechargeDO">
 		select id as id,
+		app_id as appId,
 		recharge_name as rechargeName,
 		recharge_number as
 		rechargeNumber,
@@ -16,26 +14,32 @@
 		create_time as createTime,
 		update_time as updateTime,
 		extendation as
-		extendation
+		extendation,
+		fee_code as feeCode
 		from recharge
+		where app_id =#{appId}
 		<if test="start != null and count != null">
 			limit #{start}, #{count}
 		</if>
 	</select>
-	
+
 	<!-- select 基本语句 -->
 	<select id="Recharge_select_entity" parameterType="RechargeDO"
 		resultType="RechargeDO">
 		select id as id,
-		recharge_name as rechargeName,
+		app_id as appId,
+		recharge_name as
+		rechargeName,
 		recharge_number as
 		rechargeNumber,
-		description as description,
+		description as
+		description,
 		create_time as createTime,
 		update_time as updateTime,
 		extendation as
-		extendation
-		from recharge WHERE id = #{id}
+		extendation,
+		fee_code as feeCode
+		from recharge WHERE app_id =#{appId} and fee_code=#{feeCode}
 	</select>
 
 	<!-- select count() 基本语句 -->
@@ -47,8 +51,8 @@
 	<!-- insert into 基本语句 -->
 	<insert id="Recharge_insert" parameterType="RechargeDO">
 		insert into
-		recharge(recharge_name,recharge_number,description,create_time,update_time,extendation)
-		values(#rechargeName#,#rechargeNumber#,#description#,#createTime#,#updateTime#,#extendation#)
+		recharge(recharge_name,app_id,recharge_number,description,create_time,update_time,extendation,fee_code)
+		values(#rechargeName#,#appId#,#rechargeNumber#,#description#,#createTime#,#updateTime#,#extendation#,#feeCode#)
 	</insert>
 
 
@@ -57,7 +61,7 @@
 		update
 		recharge
 		set
-		recharge_name=#rechargeName#,recharge_number=#rechargeNumber#,description=#description#,create_time=#createTime#,update_time=#updateTime#,extendation=#extendation#
+		recharge_name=#rechargeName#,recharge_number=#rechargeNumber#,description=#description#,create_time=#createTime#,update_time=#updateTime#,extendation=#extendation#,#feeCode#
 		where id = #id#
 	</update>
 
