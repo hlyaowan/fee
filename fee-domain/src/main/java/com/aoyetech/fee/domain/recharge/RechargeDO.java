@@ -14,37 +14,61 @@ public class RechargeDO extends BaseDO {
     /**
      * 流水号
      */
-    private Integer id;
+    private Integer           id;
+    /***
+     * 应用id
+     */
+    private Integer           appId;
 
     /**
      * 点数名
      */
-    private String  rechargeName;
+    private String            rechargeName;
 
     /**
      * 点数
      */
-    private Integer rechargeNumber;
+    private Integer           rechargeNumber;
 
     /**
      * 描述
      */
-    private String  description;
+    private String            description;
 
     /**
      * 建立时间
      */
-    private String    createTime;
+    private String            createTime;
 
     /**
      * 修改时间
      */
-    private String    updateTime;
+    private String            updateTime;
 
     /**
      * 扩展字段
      */
-    private String  extendation;
+    private String            extendation;
+    /***
+     * 计费编码
+     */
+    private String            feeCode;
+
+    public Integer getAppId() {
+        return appId;
+    }
+
+    public void setAppId(Integer appId) {
+        this.appId = appId;
+    }
+
+    public String getFeeCode() {
+        return feeCode;
+    }
+
+    public void setFeeCode(String feeCode) {
+        this.feeCode = feeCode;
+    }
 
     /**
      * setter for column 流水号

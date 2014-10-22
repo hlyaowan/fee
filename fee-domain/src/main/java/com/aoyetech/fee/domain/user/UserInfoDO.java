@@ -12,7 +12,7 @@ public class UserInfoDO extends BaseDO {
     /***
      * 流水id
      */
-    private int               id;
+    private Integer           id;
     /***
      * 用户名
      */
@@ -24,61 +24,49 @@ public class UserInfoDO extends BaseDO {
     /***
      * 积分
      */
-    private int               integral;
+    private Integer           integral;
     /***
      * 飞机等级
      */
-    private int               planegrade;
+    private Integer           grade;
     /***
      * 砖石
      */
-    private int               masonry;
+    private Integer           masonry;
     /***
      * 历史最高分
      */
-    private int               historynum;
-    /***
-     * 绿藻宝贝
-     */
-    private int               petone;
-    /***
-     * 螳螂战士
-     */
-    private int               pettwo;
-    /***
-     * 璐璐之心
-     */
-    private int               petthree;
-    /***
-     * 黄金瓢虫
-     */
-    private int               petfour;
-    /***
-     * 铁甲钢虫
-     */
-    private int               petfive;
-    /***
-     * 无敌萌宠
-     */
-    private int               petsix;
+    private Integer           historynum;
     /***
      * 
      */
-    private int               currentblackstage;
+    private Integer           currentblackstage;
     /***
      * 
      */
-    private int               isblackstateunlock;
+    private Integer           isblackstateunlock;
     /***
      * 
      */
-    private int               isnewplayer;
+    private Integer           isnewplayer;
+    /***
+     * 
+     */
+    private Integer           appId;
 
-    public int getId() {
+    public Integer getAppId() {
+        return appId;
+    }
+
+    public void setAppId(Integer appId) {
+        this.appId = appId;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -98,107 +86,59 @@ public class UserInfoDO extends BaseDO {
         this.password = password;
     }
 
-    public int getIntegral() {
+    public Integer getIntegral() {
         return integral;
     }
 
-    public void setIntegral(int integral) {
+    public void setIntegral(Integer integral) {
         this.integral = integral;
     }
 
-    public int getPlanegrade() {
-        return planegrade;
+    public Integer getGrade() {
+        return grade;
     }
 
-    public void setPlanegrade(int planegrade) {
-        this.planegrade = planegrade;
+    public void setGrade(Integer grade) {
+        this.grade = grade;
     }
 
-    public int getMasonry() {
+    public Integer getMasonry() {
         return masonry;
     }
 
-    public void setMasonry(int masonry) {
+    public void setMasonry(Integer masonry) {
         this.masonry = masonry;
     }
 
-    public int getHistorynum() {
+    public Integer getHistorynum() {
         return historynum;
     }
 
-    public void setHistorynum(int historynum) {
+    public void setHistorynum(Integer historynum) {
         this.historynum = historynum;
     }
 
-    public int getPetone() {
-        return petone;
-    }
-
-    public void setPetone(int petone) {
-        this.petone = petone;
-    }
-
-    public int getPettwo() {
-        return pettwo;
-    }
-
-    public void setPettwo(int pettwo) {
-        this.pettwo = pettwo;
-    }
-
-    public int getPetthree() {
-        return petthree;
-    }
-
-    public void setPetthree(int petthree) {
-        this.petthree = petthree;
-    }
-
-    public int getPetfour() {
-        return petfour;
-    }
-
-    public void setPetfour(int petfour) {
-        this.petfour = petfour;
-    }
-
-    public int getPetfive() {
-        return petfive;
-    }
-
-    public void setPetfive(int petfive) {
-        this.petfive = petfive;
-    }
-
-    public int getPetsix() {
-        return petsix;
-    }
-
-    public void setPetsix(int petsix) {
-        this.petsix = petsix;
-    }
-
-    public int getCurrentblackstage() {
+    public Integer getCurrentblackstage() {
         return currentblackstage;
     }
 
-    public void setCurrentblackstage(int currentblackstage) {
+    public void setCurrentblackstage(Integer currentblackstage) {
         this.currentblackstage = currentblackstage;
     }
 
-    public int getIsblackstateunlock() {
+    public Integer getIsblackstateunlock() {
         return isblackstateunlock;
     }
 
-    public void setIsblackstateunlock(int isblackstateunlock) {
+    public void setIsblackstateunlock(Integer isblackstateunlock) {
         this.isblackstateunlock = isblackstateunlock;
     }
 
-    public int getIsnewplayer() {
+    public Integer getIsnewplayer() {
         return isnewplayer;
     }
 
-    public void setIsnewplayer(int isnewplayer) {
+    public void setIsnewplayer(Integer isnewplayer) {
         this.isnewplayer = isnewplayer;
     }
 

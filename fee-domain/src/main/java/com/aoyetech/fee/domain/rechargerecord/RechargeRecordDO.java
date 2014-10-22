@@ -15,6 +15,10 @@ public class RechargeRecordDO extends BaseDO {
      * 流水号
      */
     private Integer           id;
+    /***
+     * 应用id
+     */
+    private Integer           appId;
 
     /**
      * 支付名
@@ -45,6 +49,27 @@ public class RechargeRecordDO extends BaseDO {
      * 扩展1
      */
     private String            extendation;
+
+    /***
+     * 0未成功，1成功
+     */
+    private Integer           status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getAppId() {
+        return appId;
+    }
+
+    public void setAppId(Integer appId) {
+        this.appId = appId;
+    }
 
     /**
      * setter for column 流水号
