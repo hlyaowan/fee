@@ -4,7 +4,9 @@ import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.fastjson.JSON;
 import com.aoyetech.fee.biz.rechage.RechargeManager;
+import com.aoyetech.fee.biz.rechargerecord.impl.RechargeRecordManagerImpl;
 import com.aoyetech.fee.commons.constant.PayConstant;
+import com.aoyetech.fee.commons.utils.DateUtils;
 import com.aoyetech.fee.commons.utils.ExceptionHelper;
 import com.aoyetech.fee.domain.base.Message;
 import com.aoyetech.fee.domain.recharge.RechargeDO;
 import com.aoyetech.fee.domain.recharge.ResultMessage;
+import com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO;
 import com.aoyetech.fee.statuscode.BusinessCode;
 import com.aoyetech.fee.web.app.utils.ServletUtils;
 import com.aoyetech.feecommons.page.PagerConstant;
@@ -38,7 +43,10 @@ import com.aoyetech.feecommons.page.PagerConstant;
 public class RechargeController {
 
     @Autowired
-    private RechargeManager  rechargeManager;
+    private RechargeManager     rechargeManager;
+    
+    @Autowired
+    private RechargeRecordManagerImpl rechargeRecordManagerImpl;
 
     @Autowired
     private ExceptionHelper     exceptionHelper;
@@ -46,15 +54,17 @@ public class RechargeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RechargeController.class);
 
     @RequestMapping(value = { "/recharge/get_recharge_list.json" })
-    public void getRechargeList(@RequestParam(value = "page", required = false, defaultValue = "1")
-    Integer page, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    public void getRechargeList(
+                                @RequestParam(value = "page", required = false, defaultValue = "1")Integer page, 
+                                @RequestParam(value = "appId", required = false, defaultValue = "1")Integer appId,
+                                HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         if (page == null || page < 1) {
             page = PagerConstant.DEFAULTSTART;
         }
         int start = (page - 1) * PagerConstant.PAGESIZE;
         String object = StringUtils.EMPTY;
         List<RechargeDO> airRechargeDOs = rechargeManager.getRechargeList(start,
-            PagerConstant.PAGESIZE);
+            PagerConstant.PAGESIZE,appId);
         object = JSON.toJSONString(airRechargeDOs);
         ServletUtils.renderJson(response, object);
     }
@@ -62,24 +72,36 @@ public class RechargeController {
     @RequestMapping(value = { "/recharge/get_recharge_image.json" })
     public void getRechargeImage(@RequestParam(value = "userId", required = false, defaultValue = "1")
                                  String userId,
-                                 @RequestParam(value = "rechargeId", required = false, defaultValue = "1")
-                                 String rechargeId, HttpServletRequest request,
+                                 @RequestParam(value = "cpId", required = false, defaultValue = "1")
+                                 String cpId,
+                                 @RequestParam(value = "appId", required = false, defaultValue = "1")
+                                 Integer appId,
+                                 @RequestParam(value = "cpServiceId", required = false, defaultValue = "1")
+                                 String cpServiceId,
+                                 @RequestParam(value = "feeCode", required = false, defaultValue = "1")
+                                 String feeCode,
+                                 @RequestParam(value = "channelId", required = false, defaultValue = "1")
+                                 String channelId, HttpServletRequest request,
                                  HttpServletResponse response, ModelMap model) {
         ResultMessage message = new ResultMessage();
         /***
          * 提交的xml格式内容<?xml version='1.0' encoding='UTF-8'?><request><msgType>WebGameBuyToolReq</msgType><versionId>01</versionId><userId>1124433646</userId><cpId>772530</cpId><cpServiceId>653020082266</cpServiceId><consumeCode>000082265005</consumeCode><channelId>10558000</channelId><transIDO>77253020140416110623925739</transIDO></request>
          */
         StringBuffer sb = new StringBuffer();
+        String shortDate = DateUtils.formatDate(new Date(), DateUtils.YYYYMMDDHHMMSS);
+        Random ran = new Random();
+        int value = 100000 + ran.nextInt(100000);
+        String transIDO = cpId + shortDate + value;
         sb.append("<?xml version='1.0' encoding='UTF-8'?>");
         sb.append("<request>");
         sb.append("<msgType>WebGameBuyToolReq</msgType>");
         sb.append("<versionId>01</versionId>");
         sb.append("<userId>" + userId + "</userId>");
-        sb.append("<cpId>710587</cpId>");
-        sb.append("<cpServiceId>658720071768</cpServiceId>");
-        sb.append("<consumeCode>000071767001</consumeCode>");
-        sb.append("<channelId>10558000</channelId>");
-        sb.append("<transIDO>77253020140416110623925739</transIDO>");
+        sb.append("<cpId>" + cpId + "</cpId>");
+        sb.append("<cpServiceId>" + cpServiceId + "</cpServiceId>");
+        sb.append("<consumeCode>" + feeCode + "</consumeCode>");
+        sb.append("<channelId>" + channelId + "</channelId>");
+        sb.append("<transIDO>" + transIDO + "</transIDO>");
         sb.append("</request>");
         /***
          * 响应消息体：<?xml version="1.0" encoding="UTF-8"?>
@@ -92,7 +114,7 @@ public class RechargeController {
             </response>
          */
         String content = doHttpPost(PayConstant.NewJIFEIURL, sb.toString());
-        LOGGER.warn("[RechargeController] getRechargeImage result xml is :"+content);
+        LOGGER.warn("[RechargeController] getRechargeImage result xml is :" + content);
         if (StringUtils.isNotBlank(content)) {
             try {
                 Document document = DocumentHelper.parseText(content);// 将字符串转为XML
@@ -103,10 +125,33 @@ public class RechargeController {
                 String picVCodeURL = rootElt.elementTextTrim("picVCodeURL");
                 if (StringUtils.equals(hRet, "1") || StringUtils.equals(hRet, "3")) {
                     if (StringUtils.equals(status, "2800")) {
+                        if (StringUtils.isNotBlank(picVCodeURL)) {
+                            String[] picVCode = picVCodeURL.split("\\?");
+                            if (picVCode.length == 2) {
+                                picVCodeURL = picVCodeURL.replace(picVCode[0],
+                                    PayConstant.IMGCODEURL);
+                            }
+                        }
                         message.setStatus(BusinessCode.NORMAL);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
                         message.setPicVCodeURL(picVCodeURL);
                         message.setConfirmId(confirmId);
+                        //查询充值记录
+                        RechargeDO rechargeDO =new RechargeDO();
+                        rechargeDO.setAppId(appId);
+                        rechargeDO.setFeeCode(feeCode);
+                        rechargeDO =rechargeManager.getRechargeEntity(rechargeDO);
+                        //插入计费代码表
+                        RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
+                        rechargeRecordDO.setAppId(appId);
+                        rechargeRecordDO.setRechargeName(rechargeDO.getRechargeName());
+                        rechargeRecordDO.setDiamondNumber(rechargeDO.getRechargeNumber());
+                        rechargeRecordDO.setDecribe(rechargeDO.getDescription());
+                        rechargeRecordDO.setCreateTime(DateUtils.formatDate(new Date(), DateUtils.DEFAULT_DATETIME));
+                        rechargeRecordDO.setUpdateTime(DateUtils.formatDate(new Date(), DateUtils.DEFAULT_DATETIME));
+                        rechargeRecordDO.setExtendation(confirmId);
+                        rechargeRecordDO.setStatus(0);
+                        rechargeRecordManagerImpl.insertRechargeRecord(rechargeRecordDO);
                     } else {
                         message.setStatus(BusinessCode.OPRATE_ERROR);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
@@ -129,8 +174,9 @@ public class RechargeController {
     }
 
     @RequestMapping(value = { "/recharge/pay_confirm.json" })
-    public void payConfirm(@RequestParam(value = "answer", required = false)
-    String answer, @RequestParam(value = "confirmId", required = false, defaultValue = "1")
+    public void payConfirm(@RequestParam(value = "answer", required = false) String answer, 
+                           @RequestParam(value = "appId", required = false) Integer appId, 
+                           @RequestParam(value = "confirmId", required = false, defaultValue = "1")
     String confirmId, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         Message message = new Message();
         /***
@@ -140,11 +186,12 @@ public class RechargeController {
         sb.append("<?xml version='1.0' encoding='UTF-8'?>");
         sb.append("<request>");
         sb.append("<msgType>WebGameBuyToolConfirmReq</msgType>");
+        sb.append("<versionId>01</versionId>");
         sb.append("<confirmId>" + confirmId + "</confirmId>");
-        sb.append("<picVCode>" + answer + "</picVCode>");
+        sb.append("<picVCode>" + 5 + "</picVCode>");
         sb.append("</request>");
         String resultXml = doHttpPost(PayConstant.NewJIFEIURL, sb.toString());
-        LOGGER.warn("[RechargeController] payConfirm result xml is :"+resultXml);
+        LOGGER.warn("[RechargeController] payConfirm result xml is :" + resultXml);
         /***
          * 返回xml：<?xml version="1.0" encoding="UTF-8"?>
             <response>
@@ -161,11 +208,25 @@ public class RechargeController {
                 Element rootElt = document.getRootElement(); // 获取根节点
                 String hRet = rootElt.elementTextTrim("hRet");
                 String status = rootElt.elementTextTrim("status");
+                
+                //修改成功的状态
+                RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
+                rechargeRecordDO.setAppId(appId);
+                rechargeRecordDO.setExtendation(confirmId);
+                rechargeRecordDO.setStatus(1);
+                rechargeRecordManagerImpl.updateRechargeRecord(rechargeRecordDO);
+                
                 if (StringUtils.equals(hRet, "1") || StringUtils.equals(hRet, "3")
                     || StringUtils.equals(hRet, "0")) {
-                    if (StringUtils.equals(status, "1800")||StringUtils.equals(status, "1801")) {
+                    if (StringUtils.equals(status, "1800") || StringUtils.equals(status, "1801")) {
                         message.setStatus(BusinessCode.NORMAL);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
+                        //修改成功的状态
+//                        RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
+//                        rechargeRecordDO.setAppId(appId);
+//                        rechargeRecordDO.setExtendation(confirmId);
+//                        rechargeRecordDO.setStatus(1);
+//                        rechargeRecordManagerImpl.updateRechargeRecord(rechargeRecordDO);
                     } else {
                         message.setStatus(BusinessCode.OPRATE_ERROR);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));

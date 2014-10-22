@@ -25,14 +25,13 @@ import com.aoyetech.fee.web.app.utils.ServletUtils;
 public class UserController {
 
     @Autowired
-    private UserManager      userManager;
+    private UserManager     userManager;
 
     @Autowired
-    private UserExtManager   userExtManager;
+    private UserExtManager  userExtManager;
 
     @Autowired
-    private ExceptionHelper  exceptionHelper;
-
+    private ExceptionHelper exceptionHelper;
 
     @RequestMapping(value = { "/user/getuserinfo.json" })
     public void getuserinfo(@RequestParam(value = "id", required = false)
@@ -58,15 +57,16 @@ public class UserController {
      * @param model
      */
     @RequestMapping(value = { "/user/register.json" })
-    public void register(@RequestParam(value = "userId", required = false)
-    String userId, @RequestParam(value = "key", required = false)
-    String key, @RequestParam(value = "cpId", required = false)
-    String cpId, @RequestParam(value = "cpServiceId", required = false)
-    String cpServiceId, @RequestParam(value = "channelId", required = false)
-    String channelId, @RequestParam(value = "p", required = false)
-    String p, @RequestParam(value = "region", required = false)
-    String region, @RequestParam(value = "contentInfo", required = false)
-    String contentInfo, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    public void register(@RequestParam(value = "userId", required = false)String userId,
+                         @RequestParam(value = "appId",  required = false, defaultValue = "1")Integer appId,
+                         @RequestParam(value = "key", required = false) String key, 
+                         @RequestParam(value = "cpId", required = false) String cpId, 
+                         @RequestParam(value = "cpServiceId", required = false) String cpServiceId, 
+                         @RequestParam(value = "channelId", required = false) String channelId, 
+                         @RequestParam(value = "p", required = false) String p, 
+                         @RequestParam(value = "region", required = false) String region, 
+                         @RequestParam(value = "contentInfo", required = false) String contentInfo, 
+                         HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         //http://202.85.214.90:81/?userId=1124433646&key=JS000e43297002913643937660951&cpId=772319&cpServiceId=700214722000&channelId=40204000&p=
         Message message = new Message();
         //判断用户是否存在
@@ -83,15 +83,9 @@ public class UserController {
             userInfoDO.setIsnewplayer(0);
             userInfoDO.setMasonry(0);
             userInfoDO.setName(StringUtils.trim(userId));
-            userInfoDO.setPassword("");
-            userInfoDO.setPetone(0);
-            userInfoDO.setPettwo(0);
-            userInfoDO.setPetthree(0);
-            userInfoDO.setPetfour(0);
-            userInfoDO.setPetfour(0);
-            userInfoDO.setPetfive(0);
-            userInfoDO.setPetsix(0);
-            userInfoDO.setPlanegrade(0);
+            userInfoDO.setPassword("123456");
+            userInfoDO.setGrade(0);
+            userInfoDO.setAppId(appId);
             userManager.insertUser(userInfoDO);
             // 插入扩展表
             airUserExtDO = new UserExtDO();
@@ -125,35 +119,19 @@ public class UserController {
         String responsemess = JSON.toJSONString(message);
         ServletUtils.renderJson(response, responsemess);
     }
-    
+
     @RequestMapping(value = { "/user/modify_user_data.json" })
-    public void modifyUserData(@RequestParam(value = "userId", required = false)String userId,
-                               @RequestParam(value = "integral", required = false)Integer integral,
-                               @RequestParam(value = "planeGrade", required = false)Integer planeGrade,
-                               @RequestParam(value = "masonry", required = false)Integer masonry,
-                               @RequestParam(value = "historyNum", required = false)Integer historyNum,
-                               @RequestParam(value = "petOne", required = false)Integer petOne,
-                               @RequestParam(value = "petTwo", required = false)Integer petTwo,
-                               @RequestParam(value = "petThree", required = false)Integer petThree,
-                               @RequestParam(value = "petFour", required = false)Integer petFour,
-                               @RequestParam(value = "petFive", required = false)Integer petFive,
-                               @RequestParam(value = "petSix", required = false)Integer petSix,
-                               @RequestParam(value = "currentBlackStage", required = false)Integer currentBlackStage,
-                               @RequestParam(value = "isBlackStateUnlock", required = false)Integer isBlackStateUnlock,
-                               @RequestParam(value = "isNewPlayer", required = false)Integer isNewPlayer,
-                               @RequestParam(value = "craftName", required = false)String craftName,
-                               @RequestParam(value = "driverName", required = false)String driverName,
-                               @RequestParam(value = "personName", required = false)String personName,
-                               HttpServletRequest request, HttpServletResponse response, ModelMap model){
+    public void modifyUserData(@RequestParam(value = "userId", required = false)
+    String userId, @RequestParam(value = "integral", required = false)
+    Integer integral, @RequestParam(value = "grade", required = false)
+    Integer grade, @RequestParam(value = "masonry", required = false)
+    Integer masonry, @RequestParam(value = "historyNum", required = false)
+    Integer historyNum, @RequestParam(value = "currentBlackStage", required = false)
+    Integer currentBlackStage, @RequestParam(value = "isBlackStateUnlock", required = false)
+    Integer isBlackStateUnlock, @RequestParam(value = "isNewPlayer", required = false)
+    Integer isNewPlayer, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
         Message message = new Message();
-        //更新扩展表
-        UserExtDO airUserExtDO = new UserExtDO();
-        airUserExtDO.setAuthId(StringUtils.trim(userId));
-        airUserExtDO.setCraftName(craftName);
-        airUserExtDO.setDriverName(driverName);
-        airUserExtDO.setPersonName(personName);
-        userExtManager.updateUserExt(airUserExtDO);
         //更新用户表
         UserInfoDO userInfoDO = new UserInfoDO();
         userInfoDO.setCurrentblackstage(currentBlackStage);
@@ -163,22 +141,16 @@ public class UserController {
         userInfoDO.setIsnewplayer(isNewPlayer);
         userInfoDO.setMasonry(masonry);
         userInfoDO.setName(StringUtils.trim(userId));
-        userInfoDO.setPetone(petOne);
-        userInfoDO.setPettwo(petTwo);
-        userInfoDO.setPetthree(petThree);
-        userInfoDO.setPetfour(petFour);
-        userInfoDO.setPetfive(petFive);
-        userInfoDO.setPetsix(petSix);
-        userInfoDO.setPlanegrade(historyNum);
+        userInfoDO.setGrade(grade);
         int isSuccess = userManager.updateUser(userInfoDO);
-        if(isSuccess==1){
+        if (isSuccess == 1) {
             message.setStatus(BusinessCode.NORMAL);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
-        }else{
+        } else {
             message.setStatus(BusinessCode.OPRATE_ERROR);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
         }
-        String obj =JSON.toJSONString(message);
+        String obj = JSON.toJSONString(message);
         ServletUtils.renderJson(response, obj);
     }
 }
