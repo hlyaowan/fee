@@ -2,6 +2,6 @@ package com.aoyetech.fee.commons.constant;
 
 public class PayConstant {
 
-    public final static String NewJIFEIURL = "http://sp.gamebean.com/OPB/agent/710587/hangzhouaoye/kuangyebuluoshouweizhan/agent.jsp?act=WebGameBuyTool";
-    public final static String IMGCODEURL     = "http://sp.gamebean.com/OPB/image/get.jsp";
+    public final static String NewJIFEIURL = "http://117.185.4.62:8090/GameInterface/cmcc/WebGameBuyToolServlet.do";
+    public final static String IMGCODEURL     = "http://117.185.4.62:8090/GameInterface/cmcc/vcode.do";
 }

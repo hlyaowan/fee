@@ -18,11 +18,12 @@ import org.apache.log4j.Logger;
  */
 public abstract class DateUtils {
 
-    private static final Logger logger            = Logger.getLogger(DateUtils.class);
+    public static final Logger logger            = Logger.getLogger(DateUtils.class);
 
-    private static final String DEFAULT_DATE      = "yyyyMMdd";
-    private static final String DEFAULT_TIMESTAMP = "yyyyMMddHHmmssSSS";
-    private static final String DEFAULT_DATETIME  = "yyyy-MM-dd HH:mm:ss";
+    public static final String DEFAULT_DATE      = "yyyyMMdd";
+    public static final String DEFAULT_TIMESTAMP = "yyyyMMddHHmmssSSS";
+    public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
+    public static final String DEFAULT_DATETIME  = "yyyy-MM-dd HH:mm:ss";
 
     public static Timestamp getDateTime() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
