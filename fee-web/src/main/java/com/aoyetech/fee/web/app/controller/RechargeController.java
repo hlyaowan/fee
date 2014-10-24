@@ -66,6 +66,7 @@ public class RechargeController {
         List<RechargeDO> airRechargeDOs = rechargeManager.getRechargeList(start,
             PagerConstant.PAGESIZE,appId);
         object = JSON.toJSONString(airRechargeDOs);
+        LOGGER.info("[UserController] getRechargeList success,RechargeDOs"+object);
         ServletUtils.renderJson(response, object);
     }
 

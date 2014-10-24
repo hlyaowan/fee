@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +34,9 @@ public class UserController {
 
     @Autowired
     private ExceptionHelper exceptionHelper;
+    
+    
+    private static final Logger logger =LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = { "/user/getuserinfo.json" })
     public void getuserinfo(@RequestParam(value = "id", required = false)
@@ -39,6 +44,7 @@ public class UserController {
         String object = StringUtils.EMPTY;
         UserInfoDO userInfoDO = userManager.getUserInfo(username);
         object = JSON.toJSONString(userInfoDO);
+        logger.info("[UserController] getuserinfo success,userinfo"+object);
         ServletUtils.renderJson(response, object);
     }
 
@@ -107,13 +113,16 @@ public class UserController {
             if (isSuccess > 0) {
                 message.setStatus(BusinessCode.NORMAL);
                 message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
+                logger.info("[UserController] register success,userinfo"+JSON.toJSONString(userInfoDO)+",userext"+JSON.toJSONString(airUserExtDO));
             } else {
                 message.setStatus(BusinessCode.ORDER_FAIL);
                 message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
+                logger.error("[UserController] register fail,userinfo"+JSON.toJSONString(userInfoDO)+",userext"+JSON.toJSONString(airUserExtDO));
             }
         } else {
             message.setStatus(BusinessCode.USER_EXIST);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.USER_EXIST));
+            logger.error("[UserController] register fail, user is already exist ,userId ="+userId);
         }
 
         String responsemess = JSON.toJSONString(message);
@@ -146,9 +155,11 @@ public class UserController {
         if (isSuccess == 1) {
             message.setStatus(BusinessCode.NORMAL);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
+            logger.info("[UserController] update success,userinfo"+JSON.toJSONString(userInfoDO));
         } else {
             message.setStatus(BusinessCode.OPRATE_ERROR);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
+            logger.info("[UserController] update fail,userinfo"+JSON.toJSONString(userInfoDO));
         }
         String obj = JSON.toJSONString(message);
         ServletUtils.renderJson(response, obj);
