@@ -36,38 +36,37 @@ import com.aoyetech.fee.domain.recharge.RechargeDO;
 import com.aoyetech.fee.domain.recharge.ResultMessage;
 import com.aoyetech.fee.domain.rechargerecord.RechargeRecordDO;
 import com.aoyetech.fee.statuscode.BusinessCode;
-import com.aoyetech.fee.web.app.utils.ServletUtils;
 import com.aoyetech.feecommons.page.PagerConstant;
 
 @Controller
-public class RechargeController {
+public class RechargeController extends BaseController {
 
     @Autowired
-    private RechargeManager     rechargeManager;
-    
+    private RechargeManager           rechargeManager;
+
     @Autowired
     private RechargeRecordManagerImpl rechargeRecordManagerImpl;
 
     @Autowired
-    private ExceptionHelper     exceptionHelper;
+    private ExceptionHelper           exceptionHelper;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RechargeController.class);
+    private static final Logger       LOGGER = LoggerFactory.getLogger(RechargeController.class);
 
     @RequestMapping(value = { "/recharge/get_recharge_list.json" })
-    public void getRechargeList(
-                                @RequestParam(value = "page", required = false, defaultValue = "1")Integer page, 
-                                @RequestParam(value = "appId", required = false, defaultValue = "1")Integer appId,
-                                HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    public void getRechargeList(@RequestParam(value = "page", required = false, defaultValue = "1")
+    Integer page, @RequestParam(value = "appId", required = false, defaultValue = "1")
+    Integer appId, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         if (page == null || page < 1) {
             page = PagerConstant.DEFAULTSTART;
         }
         int start = (page - 1) * PagerConstant.PAGESIZE;
         String object = StringUtils.EMPTY;
         List<RechargeDO> airRechargeDOs = rechargeManager.getRechargeList(start,
-            PagerConstant.PAGESIZE,appId);
+            PagerConstant.PAGESIZE, appId);
         object = JSON.toJSONString(airRechargeDOs);
-        LOGGER.info("[UserController] getRechargeList success,RechargeDOs"+object);
-        ServletUtils.renderJson(response, object);
+        LOGGER.info("[UserController] getRechargeList success,RechargeDOs" + object);
+        //        ServletUtils.renderJson(response, object);
+        outDomainJson(object, request, response);
     }
 
     @RequestMapping(value = { "/recharge/get_recharge_image.json" })
@@ -138,18 +137,20 @@ public class RechargeController {
                         message.setPicVCodeURL(picVCodeURL);
                         message.setConfirmId(confirmId);
                         //查询充值记录
-                        RechargeDO rechargeDO =new RechargeDO();
+                        RechargeDO rechargeDO = new RechargeDO();
                         rechargeDO.setAppId(appId);
                         rechargeDO.setFeeCode(feeCode);
-                        rechargeDO =rechargeManager.getRechargeEntity(rechargeDO);
+                        rechargeDO = rechargeManager.getRechargeEntity(rechargeDO);
                         //插入计费代码表
-                        RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
+                        RechargeRecordDO rechargeRecordDO = new RechargeRecordDO();
                         rechargeRecordDO.setAppId(appId);
                         rechargeRecordDO.setRechargeName(rechargeDO.getRechargeName());
                         rechargeRecordDO.setDiamondNumber(rechargeDO.getRechargeNumber());
                         rechargeRecordDO.setDecribe(rechargeDO.getDescription());
-                        rechargeRecordDO.setCreateTime(DateUtils.formatDate(new Date(), DateUtils.DEFAULT_DATETIME));
-                        rechargeRecordDO.setUpdateTime(DateUtils.formatDate(new Date(), DateUtils.DEFAULT_DATETIME));
+                        rechargeRecordDO.setCreateTime(DateUtils.formatDate(new Date(),
+                            DateUtils.DEFAULT_DATETIME));
+                        rechargeRecordDO.setUpdateTime(DateUtils.formatDate(new Date(),
+                            DateUtils.DEFAULT_DATETIME));
                         rechargeRecordDO.setExtendation(confirmId);
                         rechargeRecordDO.setStatus(0);
                         rechargeRecordManagerImpl.insertRechargeRecord(rechargeRecordDO);
@@ -171,13 +172,14 @@ public class RechargeController {
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
         }
         String messagejson = JSON.toJSONString(message);
-        ServletUtils.renderJson(response, messagejson);
+        //        ServletUtils.renderJson(response, messagejson);
+        outDomainJson(messagejson, request, response);
     }
 
     @RequestMapping(value = { "/recharge/pay_confirm.json" })
-    public void payConfirm(@RequestParam(value = "answer", required = false) String answer, 
-                           @RequestParam(value = "appId", required = false) Integer appId, 
-                           @RequestParam(value = "confirmId", required = false, defaultValue = "1")
+    public void payConfirm(@RequestParam(value = "answer", required = false)
+    String answer, @RequestParam(value = "appId", required = false)
+    Integer appId, @RequestParam(value = "confirmId", required = false, defaultValue = "1")
     String confirmId, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         Message message = new Message();
         /***
@@ -209,7 +211,7 @@ public class RechargeController {
                 Element rootElt = document.getRootElement(); // 获取根节点
                 String hRet = rootElt.elementTextTrim("hRet");
                 String status = rootElt.elementTextTrim("status");
-                
+
                 //修改成功的状态
                 if (StringUtils.equals(hRet, "1") || StringUtils.equals(hRet, "3")
                     || StringUtils.equals(hRet, "0")) {
@@ -217,7 +219,7 @@ public class RechargeController {
                         message.setStatus(BusinessCode.NORMAL);
                         message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
                         //修改成功的状态
-                        RechargeRecordDO rechargeRecordDO =new RechargeRecordDO();
+                        RechargeRecordDO rechargeRecordDO = new RechargeRecordDO();
                         rechargeRecordDO.setAppId(appId);
                         rechargeRecordDO.setExtendation(confirmId);
                         rechargeRecordDO.setStatus(1);
@@ -245,7 +247,8 @@ public class RechargeController {
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
         }
         String messagejson = JSON.toJSONString(message);
-        ServletUtils.renderJson(response, messagejson);
+        //        ServletUtils.renderJson(response, messagejson);
+        outDomainJson(messagejson, request, response);
     }
 
     public static String doHttpPost(String URL, String xmlInfo) {

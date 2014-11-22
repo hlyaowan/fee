@@ -21,22 +21,20 @@ import com.aoyetech.fee.domain.base.Message;
 import com.aoyetech.fee.domain.ext.UserExtDO;
 import com.aoyetech.fee.domain.user.UserInfoDO;
 import com.aoyetech.fee.statuscode.BusinessCode;
-import com.aoyetech.fee.web.app.utils.ServletUtils;
 
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
-    private UserManager     userManager;
+    private UserManager         userManager;
 
     @Autowired
-    private UserExtManager  userExtManager;
+    private UserExtManager      userExtManager;
 
     @Autowired
-    private ExceptionHelper exceptionHelper;
-    
-    
-    private static final Logger logger =LoggerFactory.getLogger(UserController.class);
+    private ExceptionHelper     exceptionHelper;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = { "/user/getuserinfo.json" })
     public void getuserinfo(@RequestParam(value = "id", required = false)
@@ -44,8 +42,9 @@ public class UserController {
         String object = StringUtils.EMPTY;
         UserInfoDO userInfoDO = userManager.getUserInfo(username);
         object = JSON.toJSONString(userInfoDO);
-        logger.info("[UserController] getuserinfo success,userinfo"+object);
-        ServletUtils.renderJson(response, object);
+        logger.info("[UserController] getuserinfo success,userinfo" + object);
+        //        ServletUtils.renderJson(response, object);
+        outDomainJson(object, request, response);
     }
 
     /***
@@ -63,16 +62,16 @@ public class UserController {
      * @param model
      */
     @RequestMapping(value = { "/user/register.json" })
-    public void register(@RequestParam(value = "userId", required = false)String userId,
-                         @RequestParam(value = "appId",  required = false, defaultValue = "1")Integer appId,
-                         @RequestParam(value = "key", required = false) String key, 
-                         @RequestParam(value = "cpId", required = false) String cpId, 
-                         @RequestParam(value = "cpServiceId", required = false) String cpServiceId, 
-                         @RequestParam(value = "channelId", required = false) String channelId, 
-                         @RequestParam(value = "p", required = false) String p, 
-                         @RequestParam(value = "region", required = false) String region, 
-                         @RequestParam(value = "contentInfo", required = false) String contentInfo, 
-                         HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    public void register(@RequestParam(value = "userId", required = false)
+    String userId, @RequestParam(value = "appId", required = false, defaultValue = "1")
+    Integer appId, @RequestParam(value = "key", required = false)
+    String key, @RequestParam(value = "cpId", required = false)
+    String cpId, @RequestParam(value = "cpServiceId", required = false)
+    String cpServiceId, @RequestParam(value = "channelId", required = false)
+    String channelId, @RequestParam(value = "p", required = false)
+    String p, @RequestParam(value = "region", required = false)
+    String region, @RequestParam(value = "contentInfo", required = false)
+    String contentInfo, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         //http://202.85.214.90:81/?userId=1124433646&key=JS000e43297002913643937660951&cpId=772319&cpServiceId=700214722000&channelId=40204000&p=
         Message message = new Message();
         //判断用户是否存在
@@ -113,20 +112,26 @@ public class UserController {
             if (isSuccess > 0) {
                 message.setStatus(BusinessCode.NORMAL);
                 message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
-                logger.info("[UserController] register success,userinfo"+JSON.toJSONString(userInfoDO)+",userext"+JSON.toJSONString(airUserExtDO));
+                logger.info("[UserController] register success,userinfo"
+                            + JSON.toJSONString(userInfoDO) + ",userext"
+                            + JSON.toJSONString(airUserExtDO));
             } else {
                 message.setStatus(BusinessCode.ORDER_FAIL);
                 message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
-                logger.error("[UserController] register fail,userinfo"+JSON.toJSONString(userInfoDO)+",userext"+JSON.toJSONString(airUserExtDO));
+                logger.error("[UserController] register fail,userinfo"
+                             + JSON.toJSONString(userInfoDO) + ",userext"
+                             + JSON.toJSONString(airUserExtDO));
             }
         } else {
             message.setStatus(BusinessCode.USER_EXIST);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.USER_EXIST));
-            logger.error("[UserController] register fail, user is already exist ,userId ="+userId);
+            logger
+                .error("[UserController] register fail, user is already exist ,userId =" + userId);
         }
 
         String responsemess = JSON.toJSONString(message);
-        ServletUtils.renderJson(response, responsemess);
+        //        ServletUtils.renderJson(response, responsemess);
+        outDomainJson(responsemess, request, response);
     }
 
     @RequestMapping(value = { "/user/modify_user_data.json" })
@@ -155,13 +160,14 @@ public class UserController {
         if (isSuccess == 1) {
             message.setStatus(BusinessCode.NORMAL);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.NORMAL));
-            logger.info("[UserController] update success,userinfo"+JSON.toJSONString(userInfoDO));
+            logger.info("[UserController] update success,userinfo" + JSON.toJSONString(userInfoDO));
         } else {
             message.setStatus(BusinessCode.OPRATE_ERROR);
             message.setMessage(exceptionHelper.getResultMsg(BusinessCode.OPRATE_ERROR));
-            logger.info("[UserController] update fail,userinfo"+JSON.toJSONString(userInfoDO));
+            logger.info("[UserController] update fail,userinfo" + JSON.toJSONString(userInfoDO));
         }
         String obj = JSON.toJSONString(message);
-        ServletUtils.renderJson(response, obj);
+        //        ServletUtils.renderJson(response, obj);
+        outDomainJson(obj, request, response);
     }
 }

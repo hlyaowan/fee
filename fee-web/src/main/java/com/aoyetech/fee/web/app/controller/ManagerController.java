@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 public class ManagerController {
     @RequestMapping(value = { "/index.htm" })
-    public String getIndexPage(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    public String getIndexPage(HttpServletRequest request, HttpServletResponse response,
+                               ModelMap model) {
         return "/index";
     }
 }
